@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
@@ -26,9 +27,4 @@ export default function App({ Component, pageProps }) {
       </ThemeProvider>
     </>
   );
-}
-
-App.propTypes = {
-  Component: PropType.node.isRequired,
-  pageProps: PropType.node.isRequired,
 }
