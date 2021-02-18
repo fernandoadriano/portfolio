@@ -1,12 +1,16 @@
 import React from 'react';
+import Content from '../src/regions/Content';
+import Footer from '../src/regions/Footer';
+import Header from '../src/regions/Header';
+import MenuArea from '../src/regions/MenuArea';
 
 export default function Home() {
   return (
     <div>
-      <section><img src='/public/images/header.svg' /></section>
-      <section>Corpo</section>
-      <section>Menu</section>
-      <section>Footer</section>
+      <Header />
+      <Content>Corpo</Content>
+      <MenuArea />
+      <Footer />
     </div>
   );
 }
