@@ -27,4 +27,6 @@ export const colors = {
 export default {
   breakpoints,
   colors,
+  transition: '200ms ease-in-out',
+  fontFamily: 'Cabin',
 };
