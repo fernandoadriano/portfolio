@@ -110,7 +110,7 @@ const Grid = {
 
     ${breakpointsMedia({
     xs: css`
-      max-width: ${breakpoints.xs}px;
+      max-width: ${breakpoints.sm}px;
  
       padding-right: 28px;
       padding-left: 28px;
