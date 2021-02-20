@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import PropTypes from 'prop-types';
 
 const Card = styled.div`
   display: flex;
@@ -28,5 +29,9 @@ Card.Image = styled.span`
 `;
 Card.Title = styled.span``;
 Card.Description = styled.span``;
+
+Card.propTypes = {
+  size: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+};
 
 export default Card;
