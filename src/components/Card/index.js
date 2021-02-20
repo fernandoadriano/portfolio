@@ -1,6 +1,10 @@
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 
+import breakpointsMedia from '../../theme/utils/breakpointsMedia';
+
+const size2Perc = (value) => (100 * value) / 12;
+
 const Card = styled.div`
   display: flex;
   flex-direction: column;
@@ -11,11 +15,46 @@ const Card = styled.div`
   box-shadow: 4px 4px 4px #074479;
   border-radius: 10px;
   padding: 6px;
-  ${({ size }) => css`
-    max-width: ${(100 * size) / 12}%;
-    width: ${(100 * size) / 12}%;
-  `};
-`;
+  margin: 5px;
+  ${({ size }) => {
+    if (typeof size === 'number') {
+      return css``;
+    }
+
+    return breakpointsMedia({
+      ...(size.xs && {
+        xs: css`
+          max-width: ${size2Perc(size.xs)}%;
+          width: ${size2Perc(size.xs)}%;
+        `,
+      }),
+      ...(size.sm && {
+        sm: css`
+          max-width: ${size2Perc(size.sm)}%;
+          width: ${size2Perc(size.sm)}%;
+        `,
+      }),
+      ...(size.md && {
+        md: css`
+          max-width: ${size2Perc(size.md)}%;
+          width: ${size2Perc(size.md)}%;
+        `,
+      }),
+      ...(size.lg && {
+        lg: css`
+          max-width: ${size2Perc(size.lg)}%;
+          width: ${size2Perc(size.lg)}%;
+        `,
+      }),
+      ...(size.xl && {
+        xl: css`
+          max-width: ${size2Perc(size.xl)}%;
+          width: ${size2Perc(size.xl)}%;
+        `,
+      }),
+    });
+  }
+}`;
 
 Card.Image = styled.span`
   max-width: 100%;

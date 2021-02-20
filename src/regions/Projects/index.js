@@ -24,7 +24,7 @@ for (i = 1; i <= 7; i += 1) {
 }
 
 const ProjectCard = ({ project }) => (
-  <Card size={2}>
+  <Card size={{sm: 12, md: 2}}>
     <Card.Image>
       <a href={project.url}>
         <img src={projeto.screenshot} alt={projeto.url} />
@@ -41,8 +41,8 @@ const ProjectList = ({ projects }) => (
     display="flex"
     flexWrap="wrap"
     flexDirection="row"
-    justifyContent="space-between"
-    padding="6px"
+    justifyContent="flex-start"
+    padding="5px"
     maxWidth="100%"
     flexBasis={0}
     flexGrow={1}
