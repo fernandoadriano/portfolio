@@ -40,8 +40,8 @@ export default function Home() {
             display="flex"
             alignItems="flex-end"
             justifyContent="top"
-            flexDirection="column"
-            order="2"
+            flexDirection={{ sm: 'row', md: 'column' }}
+            order={{ sm: 0, md: 2 }}
           >
             <MenuArea />
           </Grid.Col>

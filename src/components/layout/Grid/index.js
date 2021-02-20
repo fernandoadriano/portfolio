@@ -24,30 +24,35 @@ const Col = styled.div`
         xs: css`
       flex: 0 0 ${size2Perc(value.xs)}%;
       max-width: ${size2Perc(value.xs)}%;
+      width: ${size2Perc(value.xs)}%;
     `,
       }),
       ...(value.sm && {
         sm: css`
       flex: 0 0 ${size2Perc(value.sm)}%;
       max-width: ${size2Perc(value.sm)}%;
+      width: ${size2Perc(value.sm)}%;
     `,
       }),
       ...(value.md && {
         md: css`
       flex: 0 0 ${size2Perc(value.md)}%;
       max-width: ${size2Perc(value.md)}%;
+      width: ${size2Perc(value.md)}%;
     `,
       }),
       ...(value.lg && {
         lg: css`
       flex: 0 0 ${size2Perc(value.lg)}%;
       max-width: ${size2Perc(value.lg)}%;
+      width: ${size2Perc(value.lg)}%;
     `,
       }),
       ...(value.xl && {
         xl: css`
       flex: 0 0 ${size2Perc(value.xl)}%;
       max-width: ${size2Perc(value.xl)}%;
+      width: ${size2Perc(value.xl)}%;
     `,
       }),
     });

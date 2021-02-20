@@ -8,7 +8,7 @@ const AboutWrapper = styled.div``;
 
 const AboutMe = () => (
   <AboutWrapper>
-    <Text as="p" variant="SectionTitle">Sobre Mim</Text>
+    <Text variant="SectionTitle">Sobre</Text>
     <Text>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
       Dui elementum tristique eget tristique augue tellus nulla.
@@ -19,7 +19,7 @@ const AboutMe = () => (
       Eget egestas sed dui, habitant consequat arcu arcu tellus ultricies.
       Potenti nunc nulla turpis pharetra tincidunt nunc erat sollicitudin ut.
     </Text>
-    <Text as="p">
+    <Text>
       In odio nisi, duis arcu sem pellentesque ut nec.
       Augue vitae nisi sit luctus ac dis.
       Quam nunc, lobortis diam tristique urna.
@@ -31,7 +31,7 @@ const AboutMe = () => (
       Dui quis leo scelerisque nunc in sit.
       Vitae et est aenean lectus egestas vitae.
     </Text>
-    <Text as="p">
+    <Text>
       Donec viverra gravida purus tortor orci.
       Et malesuada vivamus eu velit, fringilla.
       Amet elit proin lectus sagittis egestas porta.
@@ -41,7 +41,7 @@ const AboutMe = () => (
       Suscipit sem aliquet facilisis habitant.
       Pulvinar leo ante tincidunt posuere enim massa lectus et adipiscing.
     </Text>
-    <Text as="p">
+    <Text>
       Sed in sed ipsum lorem amet augue vel tempor.
       Sed facilisis convallis nunc nisi.
       Sit gravida in quis bibendum ut a, eu pulvinar.
