@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Box from '../src/components/layout/Box';
 import Content from '../src/foundations/Content';
 import Footer from '../src/regions/Footer';
 import Header from '../src/regions/Header';
@@ -11,7 +12,13 @@ import MenuArea from '../src/regions/MenuArea';
 
 export default function Home() {
   return (
-    <div>
+    <Box
+      flex="1"
+      display="flex"
+      flexWrap="wrap"
+      flexDirection="column"
+      justifyContent="flex-start"
+    >
       <Header />
       <Content>
         <AboutMe />
@@ -21,6 +28,6 @@ export default function Home() {
       </Content>
       <MenuArea />
       <Footer />
-    </div>
+    </Box>
   );
 }

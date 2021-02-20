@@ -4,10 +4,15 @@ import styled from 'styled-components';
 import Logo from '../../theme/Logo';
 
 const HeaderWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: center;
+  max-height: 216px;
+  display: flex;    
+  justify-content: center;
+  flex: 1;
+  order: initial;
+  border: none;
+  margin: 0;
+  padding-top: 0;
+  padding-bottom: 0;
 `;
 
 const Header = () => (
