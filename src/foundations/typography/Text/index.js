@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import propToStyle from '../../../theme/utils/propToStyle';
 import variants from '../../../theme/typographyVariants';
 
-const TextBase = styled.span`
+export const TextBase = styled.span`
     ${({ variant, theme }) => variants[variant](theme)};
     ${propToStyle('textAlign')}
 `;
