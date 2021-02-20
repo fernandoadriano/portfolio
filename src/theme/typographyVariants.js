@@ -1,7 +1,7 @@
 export default {
   SectionTitle: (theme) => ({
     fontFamily: 'Cabin',
-    fontFize: '24px',
+    fontSize: '28px',
     fontWeight: 700,
     lineHeight: 1.25, // 125%
     color: theme.colors.secondary.main,
