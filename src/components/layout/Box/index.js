@@ -10,6 +10,10 @@ const Box = styled.div`
     ${propToStyle('backgroundImage')}
     ${propToStyle('backgroundRepeat')}
     ${propToStyle('backgroundPosition')}
+    ${propToStyle('padding')}
+    ${propToStyle('maxWidth')}
+    ${propToStyle('flexBasis')}
+    ${propToStyle('flexGrow')}
 `;
 
 export { Box as default };
