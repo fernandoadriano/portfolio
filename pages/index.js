@@ -23,10 +23,10 @@ export default function Home() {
       <Content>
         <AboutMe />
         <Projects />
-        <References />
-        <Contact />
+        {/* <References />
+        <Contact /> */}
       </Content>
-      <MenuArea />
+      {/* <MenuArea /> */}
       <Footer />
     </Box>
   );

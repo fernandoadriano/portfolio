@@ -12,6 +12,7 @@ const Box = styled.div`
     ${propToStyle('backgroundPosition')}
     ${propToStyle('padding')}
     ${propToStyle('maxWidth')}
+    ${propToStyle('width')}
     ${propToStyle('flexBasis')}
     ${propToStyle('flexGrow')}
 `;
