@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 import breakpointsMedia from '../../theme/utils/breakpointsMedia';
 
@@ -69,8 +69,12 @@ Card.Image = styled.span`
 Card.Title = styled.span``;
 Card.Description = styled.span``;
 
-Card.propTypes = {
-  size: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
-};
+// Card.propTypes = {
+//   size: PropTypes.oneOfType([
+//     PropTypes.number,
+//     PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+//     PropTypes.arrayOf(PropTypes.object),
+//   ]),
+// };
 
 export default Card;

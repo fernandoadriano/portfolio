@@ -24,7 +24,7 @@ for (i = 1; i <= 7; i += 1) {
 }
 
 const ProjectCard = ({ project }) => (
-  <Card size={{sm: 12, md: 2}}>
+  <Card size={{ sm: 12, md: 2 }}>
     <Card.Image>
       <a href={project.url}>
         <img src={projeto.screenshot} alt={projeto.url} />
