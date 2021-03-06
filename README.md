@@ -100,3 +100,15 @@ yarn husky add .husky/pre-push "yarn lint"
 
 Após este processo será criado dentro do diretório ```.husky``` o arquivo ```pre-push``` com o comando ```yarn lint``` para executar
 o ESLint antes de cada push.
+
+## Instalar e configurar o commitlint
+
+### Instalar o conventional commit para o desenvolvimento
+```bash
+yarn add --dev @commitlint/{config-conventional,cli}
+```
+
+### Adicionar o hook no husky para garantir o convetional commit
+```bash
+yarn husky add .husky/commit-msg "yarn commitlint --edit $1"
+```
