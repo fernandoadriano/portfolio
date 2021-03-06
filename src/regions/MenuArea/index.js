@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 import propToStyle from '../../theme/utils/propToStyle';
 import variants from '../../theme/typographyVariants';
@@ -52,9 +52,9 @@ const MenuArea = ({ ...props }) => {
     }
   };
 
-  // useEffect(() => {
-  //   window.addEventListener('scroll', handleScroll);
-  // });
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+  });
 
   return (
     <MenuAreaWrapper
