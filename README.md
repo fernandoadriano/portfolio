@@ -103,9 +103,9 @@ o ESLint antes de cada push.
 
 ## Instalar e configurar o commitlint
 
-### Instalar o commitlint para o desenvolvimento
+### Instalar o conventional commit para o desenvolvimento
 ```bash
-npm install --save-dev @commitlint/{config-conventional,cli}
+yarn add --dev @commitlint/{config-conventional,cli}
 ```
 
 ### Adicionar o hook no husky para garantir o convetional commit
