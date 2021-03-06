@@ -73,8 +73,4 @@ const MenuArea = ({ ...props }) => {
   );
 };
 
-MenuArea.propTypes = {
-  children: PropTypes.node.isRequired,
-};
-
 export default MenuArea;
