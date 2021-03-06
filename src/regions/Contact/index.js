@@ -7,7 +7,7 @@ const ContactWrapper = styled.div``;
 
 const Contact = () => (
   <ContactWrapper>
-    <Text variant="SectionTitle">Contato</Text>      
+    <Text variant="SectionTitle">Contato</Text>
   </ContactWrapper>
 );
 
