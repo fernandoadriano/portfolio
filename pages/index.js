@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Box from '../src/components/layout/Box';
-import Footer from '../src/regions/Footer';
 import Grid from '../src/components/layout/Grid';
+import Modal from '../src/components/Modal';
+import FormContato from '../src/patterns/FormContato';
+import Footer from '../src/regions/Footer';
 import Header from '../src/regions/Header';
 import AboutMe from '../src/regions/AboutMe';
 // import Contact from '../src/regions/Contact';
@@ -11,6 +13,12 @@ import Projects from '../src/regions/Projects';
 import MenuArea from '../src/regions/MenuArea';
 
 export default function Home() {
+  const [showContato, setShowContato] = useState(true);
+
+  const handleMenu = {
+    about: () => setShowContato(true),
+  };
+
   return (
     <Box
       flex="1"
@@ -19,6 +27,11 @@ export default function Home() {
       flexDirection="column"
       justifyContent="flex-start"
     >
+      <Modal
+        show={showContato}
+      >
+        <FormContato />
+      </Modal>
       <Grid.Container>
         <Grid.Row>
           <Grid.Col value={12}>
@@ -43,7 +56,7 @@ export default function Home() {
             flexDirection={{ sm: 'row', md: 'column' }}
             order={{ sm: 0, md: 2 }}
           >
-            <MenuArea />
+            <MenuArea onClick={(item) => handleMenu[item]()} />
           </Grid.Col>
         </Grid.Row>
         <Grid.Row>

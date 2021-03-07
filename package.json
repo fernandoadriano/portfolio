@@ -8,6 +8,7 @@
     "lint": "./node_modules/.bin/eslint --ignore-path .gitignore"
   },
   "dependencies": {
+    "framer-motion": "^3.10.0",
     "next": "latest",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",

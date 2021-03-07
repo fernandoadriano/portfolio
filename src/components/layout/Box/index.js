@@ -10,6 +10,7 @@ const Box = styled.div`
     ${propToStyle('backgroundImage')}
     ${propToStyle('backgroundRepeat')}
     ${propToStyle('backgroundPosition')}
+    ${propToStyle('backgroundColor')}
     ${propToStyle('padding')}
     ${propToStyle('maxWidth')}
     ${propToStyle('width')}
