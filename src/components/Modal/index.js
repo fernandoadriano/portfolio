@@ -7,7 +7,7 @@ const ModalWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    background: rgb(0, 255, 0, 0.1); //rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.2);
     position: fixed;
     top: 0;
     left: 0;
@@ -32,12 +32,18 @@ const ModalWrapper = styled.div`
 `;
 
 // TODO: #16 Adicionar controle de fechamento de janela
-const Modal = ({ children, show }) => (
-
+const Modal = ({ children, show, onClose }) => (
   <ModalWrapper
     show={show}
+    onClick={(event) => {
+      if (!event.target.closest('[data-modal-safe-area="true"]')) {
+        onClose();
+      }
+    }}
   >
-    {children}
+    {children({
+      'data-modal-safe-area': 'true',
+    })}
   </ModalWrapper>
 );
 
@@ -46,11 +52,8 @@ Modal.defaultProps = {
 };
 
 Modal.propTypes = {
-  children: PropTypes.oneOf([
-    PropTypes.node,
-    // PropTypes.element,
-    // PropTypes.func,
-  ]).isRequired,
+  children: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
   show: PropTypes.bool,
 };
 export default Modal;

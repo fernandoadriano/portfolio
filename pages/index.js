@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
 
 import Box from '../src/components/layout/Box';
@@ -29,8 +30,11 @@ export default function Home() {
     >
       <Modal
         show={showContato}
+        onClose={() => setShowContato(false)}
       >
-        <FormContato />
+        {(propsModal) => (
+          <FormContato {...propsModal} />
+        )}
       </Modal>
       <Grid.Container>
         <Grid.Row>
