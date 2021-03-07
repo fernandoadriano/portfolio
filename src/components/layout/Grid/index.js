@@ -107,7 +107,7 @@ Col.defaultProps = {
 
 const Grid = {
   Container: styled.div`
-    width: 100%;
+    /* width: 100%; */
     padding-right: 28px;
     padding-left: 28px;
     margin-right: auto;
@@ -135,13 +135,24 @@ const Grid = {
       max-width: ${breakpoints.xl}px;
     `,
   })}
+
+    ${propToStyle('flex')}
+    ${propToStyle('width')}
     ${propToStyle('marginTop')}
+    ${propToStyle('backgroundColor')};
+    ${propToStyle('display')}
+    ${propToStyle('alignItems')}
+    ${propToStyle('justifyContent')}
+    ${propToStyle('flexDirection')}
   `,
   Row: styled.div`
     display: flex;
     flex-wrap: wrap;
     margin-right: -16px;
     margin-left: -16px;
+
+    ${propToStyle('alignItems')}
+    ${propToStyle('justifyContent')}
     ${propToStyle('backgroundColor')};
   `,
   Col,
