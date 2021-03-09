@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useEffect, useState, Link } from 'react';
+import React, { useEffect, useState /* ,  Link */ } from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 
@@ -74,7 +74,7 @@ const MenuArea = ({ onClick, ...props }) => {
 
   const handleClick = (event) => {
     // TODO #12
-    onClick && onClick(event.target.getAttribute('name'));
+    if (onClick) onClick(event.target.getAttribute('name'));
   };
 
   return (
@@ -92,6 +92,10 @@ const MenuArea = ({ onClick, ...props }) => {
       <MenuItem name="contato" display={{ xs: 'inline', md: 'block' }} textAlign="end" onClick={handleClick}>Contato</MenuItem>
     </MenuAreaWrapper>
   );
+};
+
+MenuArea.propTypes = {
+  onClick: PropTypes.func.isRequired,
 };
 
 export default MenuArea;
