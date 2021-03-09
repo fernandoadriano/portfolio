@@ -52,8 +52,6 @@ FormContent.propTypes = {
   onClose: PropTypes.func.isRequired,
 };
 
-// TODO #11:
-// TODO: #15 Criar o elemento TextInput para entrada de dados
 const FormContato = (propsModal) => (
   <Grid.Container
     display="flex"
