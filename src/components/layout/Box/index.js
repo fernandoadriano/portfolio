@@ -12,6 +12,9 @@ const Box = styled.div`
     ${propToStyle('backgroundRepeat')}
     ${propToStyle('backgroundPosition')}
     ${propToStyle('backgroundColor')}
+    ${propToStyle('border')}
+    ${propToStyle('borderRadius')}
+    ${propToStyle('boxShadow')}
     ${propToStyle('padding')}
     ${propToStyle('maxWidth')}
     ${propToStyle('width')}

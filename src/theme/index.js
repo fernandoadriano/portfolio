@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 export const breakpoints = {
   xs: 0,
   sm: 600,
@@ -6,9 +8,17 @@ export const breakpoints = {
   xl: 1920,
 };
 
+export const getThemeColor = (color, theme) => {
+  if (!color) return null;
+
+  const [cor, variante] = color.split('.');
+
+  return get(theme, `colors.${cor}.${variante}`);
+};
+
 export const colors = {
   primary: {
-    light: '#E7F3FE',
+    light: '#BEDFFC', // '#E7F3FE',
     main: '#138AF3',
     dark: '#074479',
   },
@@ -26,6 +36,7 @@ export const colors = {
 
 export default {
   breakpoints,
+  borderRadius: '15px',
   colors,
   transition: '200ms ease-in-out',
   fontFamily: 'Cabin',
