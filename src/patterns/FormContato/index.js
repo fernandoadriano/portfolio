@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import { Box, Grid } from '../../components/layout';
 import Button from '../../components/Button';
@@ -12,7 +13,7 @@ const Form = styled.form`
     width: 100%;
 `;
 
-const FormContent = () => {
+const FormContent = ({ onClose }) => {
   const [contato, setContato] = useState({
     nome: '',
     email: '',
@@ -40,11 +41,15 @@ const FormContent = () => {
           justifyContent: 'space-evenly',
         }}
       >
-        <Button name="cmdCancelar" type="submit" color="secondary.dark" size={4} ghost>cancelar</Button>
+        <Button name="cmdCancelar" type="submit" color="secondary.dark" size={4} ghost onClick={onClose}>cancelar</Button>
         <Button name="cmdEnviar" type="submit" color="primary.dark" backgroundColor="primary.light" size={4}>enviar</Button>
       </span>
     </Form>
   );
+};
+
+FormContent.propTypes = {
+  onClose: PropTypes.func.isRequired,
 };
 
 // TODO #11:
@@ -79,7 +84,9 @@ const FormContato = (propsModal) => (
       >
         Deixe a sua mensagem aqui...
       </Text>
-      <FormContent />
+      <FormContent
+        onClose={propsModal.onClose}
+      />
     </Box>
   </Grid.Container>
 );

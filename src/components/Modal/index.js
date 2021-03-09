@@ -43,6 +43,7 @@ const Modal = ({ children, show, onClose }) => (
   >
     {children({
       'data-modal-safe-area': 'true',
+      onClose,
     })}
   </ModalWrapper>
 );
