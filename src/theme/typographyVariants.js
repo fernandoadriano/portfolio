@@ -35,17 +35,25 @@ export default {
     marginBottom: '10px',
     color: theme.colors.primary.dark,
   }),
-  buttonText: {
+  // eslint-disable-next-line no-unused-vars
+  buttonText: (theme) => ({
     display: 'block',
     fontFamily: 'Cabin',
     fontSize: '18px',
     fontWeight: 400,
     lineHeight: 1.3, // 125%
     marginBottom: '10px',
-  },
-  smallestException: {
+  }),
+  // eslint-disable-next-line no-unused-vars
+  smallestException: (theme) => ({
     fontSize: '12px',
     fontWeight: '400',
     lineHeight: 1, // 100%
-  },
+  }),
+  // eslint-disable-next-line no-unused-vars
+  formException: (theme) => ({
+    fontSize: '12px',
+    fontWeight: '400',
+    lineHeight: 1, // 100%
+  }),
 };

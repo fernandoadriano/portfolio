@@ -24,8 +24,7 @@ const Button = styled.button`
   ${breakpointsMedia({
     xs: css`padding: 12px 12px;`,
     md: css`padding: 12px 26px;`,
-  })}
-  
+  })}  
 
   ${typographyVariants.smallestException}
 
