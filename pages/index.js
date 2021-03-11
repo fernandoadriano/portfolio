@@ -60,7 +60,7 @@ export default function Home() {
             flexDirection={{ sm: 'row', md: 'column' }}
             order={{ sm: 0, md: 2 }}
           >
-            <MenuArea onClick={(item) => handleMenu[item]()} />
+            <MenuArea onClick={(item) => handleMenu[String(item)]()} />
           </Grid.Col>
         </Grid.Row>
         <Grid.Row>
