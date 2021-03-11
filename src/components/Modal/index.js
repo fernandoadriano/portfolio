@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import { motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import styled, { /* createGlobalStyle, */ css } from 'styled-components';
 
 const ModalWrapper = styled.div`
@@ -41,10 +41,26 @@ const Modal = ({ children, show, onClose }) => (
       }
     }}
   >
-    {children({
-      'data-modal-safe-area': 'true',
-      onClose,
-    })}
+    <motion.div
+      variants={{
+        opened: {
+          scale: 1,
+        },
+        closed: {
+          scale: 0,
+        },
+      }}
+      animate={show ? 'opened' : 'closed'}
+      style={{
+        display: 'flex',
+        flex: 1,
+      }}
+    >
+      {children({
+        'data-modal-safe-area': 'true',
+        onClose,
+      })}
+    </motion.div>
   </ModalWrapper>
 );
 
