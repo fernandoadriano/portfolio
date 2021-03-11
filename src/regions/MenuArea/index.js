@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
-// import PropTypes from 'prop-types';
+import React, { useEffect, useState /* ,  Link */ } from 'react';
+import styled, { css } from 'styled-components';
+import PropTypes from 'prop-types';
 
 import propToStyle from '../../theme/utils/propToStyle';
 import variants from '../../theme/typographyVariants';
@@ -21,27 +21,43 @@ const MenuAreaWrapper = styled.div`
     */
   ${({ scrolled }) => {
     if (scrolled) {
-      return {
-        position: 'fixed',
-        top: 0,
-      };
+      return css`
+        position: 'fixed';
+        top: 0;
+      `;
     }
     return {};
-  }};
+  }}
 `;
 
-const MenuItem = styled.span`
+const MenuItemWrapper = styled.span`
   padding-right: 12px;
   ${({ variant, theme }) => variants[variant](theme)};
   ${propToStyle('display')}
   ${propToStyle('textAlign')}
 `;
 
+// TODO #14:
+const MenuItem = ({ variant, children, ...props }) => (
+  <MenuItemWrapper
+    variant={variant}
+    {...props}
+  >
+    {children}
+  </MenuItemWrapper>
+);
+
 MenuItem.defaultProps = {
   variant: 'paragraph1',
 };
 
-const MenuArea = ({ ...props }) => {
+MenuItem.propTypes = {
+  variant: PropTypes.string,
+  children: PropTypes.element.isRequired,
+};
+
+// TODO #13
+const MenuArea = ({ onClick, ...props }) => {
   const [scrolled, setScrolled] = useState(false);
   const handleScroll = () => {
     const offset = window.scrollY;
@@ -56,6 +72,11 @@ const MenuArea = ({ ...props }) => {
     window.addEventListener('scroll', handleScroll);
   });
 
+  const handleClick = (event) => {
+    // TODO #12
+    if (onClick) onClick(event.target.getAttribute('name'));
+  };
+
   return (
     <MenuAreaWrapper
       display={{ xs: 'flex', md: 'block' }}
@@ -65,12 +86,16 @@ const MenuArea = ({ ...props }) => {
       scrolled={scrolled}
       {...props}
     >
-      <MenuItem display={{ xs: 'inline', md: 'block' }} textAlign="end">Sobre</MenuItem>
-      <MenuItem display={{ xs: 'inline', md: 'block' }} textAlign="end">Portifólio</MenuItem>
-      <MenuItem display={{ xs: 'inline', md: 'block' }} textAlign="end">Referência</MenuItem>
-      <MenuItem display={{ xs: 'inline', md: 'block' }} textAlign="end">Contato</MenuItem>
+      <MenuItem name="about" display={{ xs: 'inline', md: 'block' }} textAlign="end" onClick={handleClick}>Sobre</MenuItem>
+      <MenuItem name="portfolio" display={{ xs: 'inline', md: 'block' }} textAlign="end" onClick={handleClick}>Portifólio</MenuItem>
+      <MenuItem name="referencias" display={{ xs: 'inline', md: 'block' }} textAlign="end" onClick={handleClick}>Referência</MenuItem>
+      <MenuItem name="contato" display={{ xs: 'inline', md: 'block' }} textAlign="end" onClick={handleClick}>Contato</MenuItem>
     </MenuAreaWrapper>
   );
+};
+
+MenuArea.propTypes = {
+  onClick: PropTypes.func.isRequired,
 };
 
 export default MenuArea;

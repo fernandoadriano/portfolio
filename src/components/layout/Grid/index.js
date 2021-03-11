@@ -4,7 +4,7 @@ import { breakpoints } from '../../../theme';
 import breakpointsMedia from '../../../theme/utils/breakpointsMedia';
 import propToStyle from '../../../theme/utils/propToStyle';
 
-const size2Perc = (value) => (100 * value) / 12;
+// const size2Perc = (value) => (100 * value) / 12;
 
 const Col = styled.div`
   padding-right: 16px;
@@ -12,83 +12,92 @@ const Col = styled.div`
   flex-basis: 0;
   flex-grow: 1;
   max-width: 100%;
+
   ${({ value }) => {
     if (typeof value === 'number') {
       return css`
-      flex: 0 0 ${size2Perc(value)}%;
-      max-width: ${size2Perc(value)}%;
+      flex-grow: 0;
+      flex-shrink: 0;
+      flex-basis: ${(100 * value) / 12}%;
+      max-width: ${(100 * value) / 12}%;
     `;
     }
     return breakpointsMedia({
-      ...(value.xs && {
-        xs: css`
-      flex: 0 0 ${size2Perc(value.xs)}%;
-      max-width: ${size2Perc(value.xs)}%;
-      width: ${size2Perc(value.xs)}%;
-    `,
-      }),
-      ...(value.sm && {
-        sm: css`
-      flex: 0 0 ${size2Perc(value.sm)}%;
-      max-width: ${size2Perc(value.sm)}%;
-      width: ${size2Perc(value.sm)}%;
-    `,
-      }),
-      ...(value.md && {
-        md: css`
-      flex: 0 0 ${size2Perc(value.md)}%;
-      max-width: ${size2Perc(value.md)}%;
-      width: ${size2Perc(value.md)}%;
-    `,
-      }),
-      ...(value.lg && {
-        lg: css`
-      flex: 0 0 ${size2Perc(value.lg)}%;
-      max-width: ${size2Perc(value.lg)}%;
-      width: ${size2Perc(value.lg)}%;
-    `,
-      }),
-      ...(value.xl && {
-        xl: css`
-      flex: 0 0 ${size2Perc(value.xl)}%;
-      max-width: ${size2Perc(value.xl)}%;
-      width: ${size2Perc(value.xl)}%;
-    `,
-      }),
+      xs: value?.xs
+        ? css`
+        flex-grow: 0;
+        flex-shrink: 0;
+        flex-basis: ${(100 * value.xs) / 12}%;
+        max-width: ${(100 * value.xs) / 12}%;
+      `
+        : '',
+      sm: value?.sm
+        ? css`
+        flex-grow: 0;
+        flex-shrink: 0;
+        flex-basis: ${(100 * value.sm) / 12}%;
+        max-width: ${(100 * value.sm) / 12}%;
+      `
+        : '',
+      md: value?.md
+        ? css`
+        flex-grow: 0;
+        flex-shrink: 0;
+        flex-basis: ${(100 * value.md) / 12}%;
+        max-width: ${(100 * value.md) / 12}%;
+      `
+        : '',
+      lg: value?.lg
+        ? css`
+        flex-grow: 0;
+        flex-shrink: 0;
+        flex-basis: ${(100 * value.lg) / 12}%;
+        max-width: ${(100 * value.lg) / 12}%;
+      `
+        : '',
+      xl: value?.xl
+        ? css`
+        flex-grow: 0;
+        flex-shrink: 0;
+        flex-basis: ${(100 * value.xl) / 12}%;
+        max-width: ${(100 * value.xl) / 12}%;
+      `
+        : '',
     });
   }}
-  ${({ offset }) => {
+
+${({ offset }) => {
     if (typeof offset === 'number') {
       return css`
-      margin-left: ${size2Perc(offset)}%;
+      margin-left: ${(100 * offset) / 12}%;
     `;
     }
     return breakpointsMedia({
-      ...(offset.xs && {
-        xs: css`
-      margin-left: ${size2Perc(offset.xs)}%;
-    `,
-      }),
-      ...(offset.sm && {
-        sm: css`
-      margin-left: ${size2Perc(offset.sm)}%;
-    `,
-      }),
-      ...(offset.md && {
-        md: css`
-      margin-left: ${size2Perc(offset.md)}%;
-    `,
-      }),
-      ...(offset.lg && {
-        lg: css`
-      margin-left: ${size2Perc(offset.lg)}%;
-    `,
-      }),
-      ...(offset.xl && {
-        xl: css`
-      margin-left: ${size2Perc(offset.xl)}%;
-    `,
-      }),
+      xs: offset?.xs
+        ? css`
+        margin-left: ${(100 * offset.xs) / 12}%;
+      `
+        : '',
+      sm: offset?.sm
+        ? css`
+        margin-left: ${(100 * offset.sm) / 12}%;
+      `
+        : '',
+      md: offset?.md
+        ? css`
+        margin-left: ${(100 * offset.md) / 12}%;
+      `
+        : '',
+      lg: offset?.lg
+        ? css`
+        margin-left: ${(100 * offset.lg) / 12}%;
+      `
+        : '',
+      xl: offset?.xl
+        ? css`
+        margin-left: ${(100 * offset.xl) / 12}%;
+      `
+        : '',
     });
   }}
 
@@ -107,7 +116,7 @@ Col.defaultProps = {
 
 const Grid = {
   Container: styled.div`
-    width: 100%;
+    /* width: 100%; */
     padding-right: 28px;
     padding-left: 28px;
     margin-right: auto;
@@ -135,13 +144,25 @@ const Grid = {
       max-width: ${breakpoints.xl}px;
     `,
   })}
+
+    ${propToStyle('flex')}
+    ${propToStyle('width')}
     ${propToStyle('marginTop')}
+    ${propToStyle('backgroundColor')};
+    ${propToStyle('display')}
+    ${propToStyle('alignItems')}
+    ${propToStyle('justifyContent')}
+    ${propToStyle('flexDirection')}
   `,
   Row: styled.div`
     display: flex;
+    flex: 1;
     flex-wrap: wrap;
     margin-right: -16px;
     margin-left: -16px;
+
+    ${propToStyle('alignItems')}
+    ${propToStyle('justifyContent')}
     ${propToStyle('backgroundColor')};
   `,
   Col,

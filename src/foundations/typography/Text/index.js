@@ -5,8 +5,11 @@ import PropTypes from 'prop-types';
 import propToStyle from '../../../theme/utils/propToStyle';
 import variants from '../../../theme/typographyVariants';
 
+import { getThemeColor } from '../../../theme';
+
 export const TextBase = styled.span`
     ${({ variant, theme }) => variants[variant](theme)};
+    color: ${({ color, theme }) => getThemeColor(color, theme)}
     ${propToStyle('textAlign')}
 `;
 
@@ -16,7 +19,6 @@ const Text = ({
   let v = variant;
 
   if (!Object.keys(variants).includes(variant)) {
-    /// TODO: Talvez gerar exception?
     v = 'paragraph1';
   }
 
