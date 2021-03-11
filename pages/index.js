@@ -14,7 +14,7 @@ import Projects from '../src/regions/Projects';
 import MenuArea from '../src/regions/MenuArea';
 
 export default function Home() {
-  const [showContato, setShowContato] = useState(true);
+  const [showContato, setShowContato] = useState(false);
 
   const handleMenu = {
     about: () => setShowContato(true),

@@ -19,7 +19,6 @@ const Text = ({
   let v = variant;
 
   if (!Object.keys(variants).includes(variant)) {
-    /// TODO: Talvez gerar exception?
     v = 'paragraph1';
   }
 
