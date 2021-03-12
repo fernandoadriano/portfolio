@@ -7,7 +7,7 @@ export default function breakpointsMedia(cssByBreakpoint) {
     .filter((breakpointName) => Boolean(cssByBreakpoint[String(breakpointName)]))
     .map((breakpointName) => css`
             @media only screen and (min-width: ${breakpoints[String(breakpointName)]}px) {
-            ${cssByBreakpoint[breakpointName]}
+            ${cssByBreakpoint[String(breakpointName)]}
         }
         `);
 }
