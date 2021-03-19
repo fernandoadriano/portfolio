@@ -1,11 +1,10 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import styled from 'styled-components';
-// import PropTypes from 'prop-types';
 
-import Box from '../../components/layout/Box';
-import Card from '../../components/Card';
-import Text from '../../foundations/typography/Text';
+import Box from 'src/components/layout/Box';
+import Card from 'src/components/Card';
+import Text from 'src/foundations/typography/Text';
 
 const projetos = [];
 const projeto = {

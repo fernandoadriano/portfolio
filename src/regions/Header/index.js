@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Logo from '../../theme/Logo';
+import Logo from 'src/theme/Logo';
 
 const HeaderWrapper = styled.div`
   max-height: 216px;

@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
-import propToStyle from '../../theme/utils/propToStyle';
-import { getThemeColor } from '../../theme';
-import typographyVariants from '../../theme/typographyVariants';
-import breakpointsMedia from '../../theme/utils/breakpointsMedia';
+import propToStyle from 'src/theme/utils/propToStyle';
+import { getThemeColor } from 'src/theme';
+import typographyVariants from 'src/theme/typographyVariants';
+import breakpointsMedia from 'src/theme/utils/breakpointsMedia';
 
 const ButtonGhost = css`
   color: ${({ theme, color }) => getThemeColor(color, theme)};

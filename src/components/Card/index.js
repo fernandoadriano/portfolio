@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components';
-// import PropTypes from 'prop-types';
 
-import breakpointsMedia from '../../theme/utils/breakpointsMedia';
+import breakpointsMedia from 'src/theme/utils/breakpointsMedia';
 
 const size2Perc = (value) => (100 * value) / 12;
 
