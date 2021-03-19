@@ -1,33 +1,16 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import Box from 'src/components/layout/Box';
 import Card from 'src/components/Card';
 import Text from 'src/foundations/typography/Text';
 
-const projetos = [];
-const projeto = {
-  id: 1,
-  nome: 'Instalura',
-  descricao: 'Projeto desenvolvido durante Bootcamp de JAMSTACK na Alura.',
-  url: 'https://instalura-base-opal.vercel.app/',
-  screenshot: 'images/instalura.png',
-};
-
-let i;
-for (i = 1; i <= 7; i += 1) {
-  const p = { ...projeto };
-
-  p.id = i;
-  projetos.push(p);
-}
-
 const ProjectCard = ({ project }) => (
   <Card size={{ sm: 12, md: 2 }}>
     <Card.Image>
-      <a href={project.url}>
-        <img src={projeto.screenshot} alt={projeto.url} />
+      <a href={project.slug}>
+        <img src={project.screenshot} alt={project.url} />
       </a>
     </Card.Image>
     <Card.Title><Text variant="CardTitle">{project.nome}</Text></Card.Title>
@@ -56,12 +39,35 @@ const ProjectList = ({ projects }) => (
 );
 
 const ProjectsWrapper = styled.div``;
+const listaProjetos = async () => {
+  const resposta = await fetch('https://api.github.com/users/fernandoadriano/repos');
+  const gitProjects = await resposta.json();
+  const projetos = gitProjects.map((projeto) => ({
+    id: projeto.id,
+    nome: projeto.name.replace(/[_-]/gm, ' '),
+    descricao: projeto.description,
+    url: projeto.html_url,
+    slug: `projectdetail/${projeto.name}`,
+    screenshot: 'images/instalura.png',
+  }));
 
-const Project = () => (
-  <ProjectsWrapper>
-    <Text variant="SectionTitle">Portifólio de Projetos</Text>
-    <ProjectList projects={projetos} />
-  </ProjectsWrapper>
-);
+  return projetos;
+};
+
+const Project = () => {
+  const [projetos, setProjetos] = useState([]);
+
+  useEffect(async () => {
+    setProjetos(await listaProjetos());
+  }, []);
+
+  return (
+
+    <ProjectsWrapper>
+      <Text variant="SectionTitle">Portifólio de Projetos</Text>
+      <ProjectList projects={projetos} />
+    </ProjectsWrapper>
+  );
+};
 
 export default Project;

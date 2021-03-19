@@ -65,15 +65,9 @@ Card.Image = styled.span`
     width: 100%;
   }
 `;
-Card.Title = styled.span``;
+Card.Title = styled.span`
+  align-items: center;
+`;
 Card.Description = styled.span``;
-
-// Card.propTypes = {
-//   size: PropTypes.oneOfType([
-//     PropTypes.number,
-//     PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
-//     PropTypes.arrayOf(PropTypes.object),
-//   ]),
-// };
 
 export default Card;
