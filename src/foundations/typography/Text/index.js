@@ -2,10 +2,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import propToStyle from '../../../theme/utils/propToStyle';
-import variants from '../../../theme/typographyVariants';
+import propToStyle from 'src/theme/utils/propToStyle';
+import variants from 'src/theme/typographyVariants';
 
-import { getThemeColor } from '../../../theme';
+import { getThemeColor } from 'src/theme';
 
 export const TextBase = styled.span`
     ${({ variant, theme }) => variants[variant](theme)};

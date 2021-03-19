@@ -3,8 +3,8 @@ import React, { useEffect, useState /* ,  Link */ } from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 
-import propToStyle from '../../theme/utils/propToStyle';
-import variants from '../../theme/typographyVariants';
+import propToStyle from 'src/theme/utils/propToStyle';
+import variants from 'src/theme/typographyVariants';
 
 const MenuAreaWrapper = styled.div`
   ${propToStyle('display')}

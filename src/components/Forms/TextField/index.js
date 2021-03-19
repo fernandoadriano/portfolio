@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import Text from '../../../foundations/typography/Text';
-import { getThemeColor } from '../../../theme';
+import Text from 'src/foundations/typography/Text';
+import { getThemeColor } from 'src/theme';
 
 const InputWrapper = styled.div`
   margin-bottom: 17px;

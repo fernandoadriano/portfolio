@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Text from '../../foundations/typography/Text';
+import Text from 'src/foundations/typography/Text';
 
 const ReferencesWrapper = styled.div``;
 

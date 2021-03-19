@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import * as yup from 'yup';
 
-import { Box, Grid } from '../../components/layout';
-import Button from '../../components/Button';
-import Text from '../../foundations/typography/Text';
-import { TextField } from '../../components/Forms';
+import { Box, Grid } from 'src/components/layout';
+import Button from 'src/components/Button';
+import Text from 'src/foundations/typography/Text';
+import { TextField } from 'src/components/Forms';
 
 import sending from './animations/sending.json';
 import sendingFailure from './animations/sending-fail.json';
