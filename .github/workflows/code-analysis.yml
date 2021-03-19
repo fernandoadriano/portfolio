@@ -1,0 +1,56 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Analise do Codigo
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  pull_request:
+    types: [ opened, synchronize ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  #workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "analysis"
+  analysis:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      ##############################################################################################
+      # Preparar ambiente para o SKEN.AI
+      ##############################################################################################
+      - name: Set up Python 3.x 
+        uses: actions/setup-python@v2 
+        with: 
+          # Semantic version range syntax or exact version of a Python version 
+          python-version: '3.x' 
+          # Optional - x64 or x86 architecture, defaults to x64   
+          architecture: 'x64' 
+      - name: Install skencli 
+        run: pip3 install --upgrade skencli 
+      ##############################################################################################
+      # Preparar ambiente para o ESLINT
+      ##############################################################################################
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "14.15.0"
+                    
+      # Runs a set of commands using the runners shell
+      - name: Instalar dependencias
+        run:
+          yarn install
+      ##############################################################################################
+      # Executar o ESLIN e iniciar a análise para o SKEN.AI
+      ##############################################################################################
+      - name: Rodar o linter
+        run:
+          yarn lint .
+
+      - name: Run skencli 
+        run: skencli   
