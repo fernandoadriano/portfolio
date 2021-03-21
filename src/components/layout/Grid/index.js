@@ -4,8 +4,6 @@ import { breakpoints } from 'src/theme';
 import breakpointsMedia from 'src/theme/utils/breakpointsMedia';
 import propToStyle from 'src/theme/utils/propToStyle';
 
-// const size2Perc = (value) => (100 * value) / 12;
-
 const Col = styled.div`
   padding-right: 16px;
   padding-left: 16px;
@@ -153,6 +151,8 @@ const Grid = {
     ${propToStyle('alignItems')}
     ${propToStyle('justifyContent')}
     ${propToStyle('flexDirection')}
+    ${propToStyle('marginLeft')}
+    ${propToStyle('marginRight')}
   `,
   Row: styled.div`
     display: flex;
