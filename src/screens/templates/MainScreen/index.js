@@ -14,7 +14,7 @@ export default function MainScreen({ children, showMenu }) {
   const [showContato, setShowContato] = useState(false);
 
   const handleMenu = {
-    about: () => setShowContato(true),
+    contato: () => setShowContato(true),
   };
 
   return (

@@ -3,6 +3,8 @@ import React, { useEffect, useState /* ,  Link */ } from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 
+import Link from 'src/foundations/Link';
+
 import propToStyle from 'src/theme/utils/propToStyle';
 import variants from 'src/theme/typographyVariants';
 
@@ -30,7 +32,7 @@ const MenuAreaWrapper = styled.div`
   }}
 `;
 
-const MenuItemWrapper = styled.span`
+const MenuItemWrapper = styled(Link)`
   padding-right: 12px;
   ${({ variant, theme }) => variants[variant](theme)};
   ${propToStyle('display')}
@@ -38,9 +40,12 @@ const MenuItemWrapper = styled.span`
 `;
 
 // TODO #14:
-const MenuItem = ({ variant, children, ...props }) => (
+const MenuItem = ({
+  variant, children, href, ...props
+}) => (
   <MenuItemWrapper
     variant={variant}
+    href={href || '404'}
     {...props}
   >
     {children}
@@ -49,11 +54,13 @@ const MenuItem = ({ variant, children, ...props }) => (
 
 MenuItem.defaultProps = {
   variant: 'paragraph1',
+  href: '404',
 };
 
 MenuItem.propTypes = {
-  variant: PropTypes.string,
   children: PropTypes.element.isRequired,
+  href: PropTypes.string,
+  variant: PropTypes.string,
 };
 
 // TODO #13
@@ -74,6 +81,7 @@ const MenuArea = ({ onClick, ...props }) => {
 
   const handleClick = (event) => {
     // TODO #12
+    event.preventDefault();
     if (onClick) onClick(event.target.getAttribute('name'));
   };
 
@@ -86,9 +94,10 @@ const MenuArea = ({ onClick, ...props }) => {
       scrolled={scrolled}
       {...props}
     >
-      <MenuItem name="about" display={{ xs: 'inline', md: 'block' }} textAlign="end" onClick={handleClick}>Sobre</MenuItem>
-      <MenuItem name="projetos" display={{ xs: 'inline', md: 'block' }} textAlign="end" onClick={handleClick}>Projetos</MenuItem>
-      <MenuItem name="referencias" display={{ xs: 'inline', md: 'block' }} textAlign="end" onClick={handleClick}>Referência</MenuItem>
+      <MenuItem name="home" href="/" display={{ xs: 'inline', md: 'block' }} textAlign="end">Home</MenuItem>
+      <MenuItem name="about" display={{ xs: 'inline', md: 'block' }} textAlign="end">Sobre</MenuItem>
+      <MenuItem name="projetos" href="/projects" display={{ xs: 'inline', md: 'block' }} textAlign="end">Projetos</MenuItem>
+      <MenuItem name="referencias" display={{ xs: 'inline', md: 'block' }} textAlign="end">Referência</MenuItem>
       <MenuItem name="contato" display={{ xs: 'inline', md: 'block' }} textAlign="end" onClick={handleClick}>Contato</MenuItem>
     </MenuAreaWrapper>
   );
