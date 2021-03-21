@@ -45,7 +45,7 @@ const MenuItem = ({
 }) => (
   <MenuItemWrapper
     variant={variant}
-    href={href || '404'}
+    href={href}
     {...props}
   >
     {children}
@@ -54,11 +54,11 @@ const MenuItem = ({
 
 MenuItem.defaultProps = {
   variant: 'paragraph1',
-  href: '404',
+  href: '/404',
 };
 
 MenuItem.propTypes = {
-  children: PropTypes.element.isRequired,
+  children: PropTypes.node.isRequired,
   href: PropTypes.string,
   variant: PropTypes.string,
 };

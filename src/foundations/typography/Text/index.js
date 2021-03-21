@@ -30,12 +30,13 @@ const Text = ({
 };
 
 Text.defaultProps = {
+  children: '',
   variant: 'paragraph1',
 };
 
 Text.propTypes = {
   variant: PropTypes.string,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
 };
 
 export default Text;

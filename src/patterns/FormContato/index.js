@@ -3,9 +3,13 @@ import { Lottie } from '@crello/react-lottie';
 import PropTypes from 'prop-types';
 import * as yup from 'yup';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+
 import { Box, Grid } from 'src/components/layout';
 import Form from 'src/components/Form';
 import Text from 'src/foundations/typography/Text';
+import theme from 'src/theme';
 
 import sending from './animations/sending.json';
 import sendingFailure from './animations/sending-fail.json';
@@ -148,9 +152,42 @@ const FormContent = ({ onClose }) => {
         </Form.Row>
       </Form>
     ),
-    [formState.SENDING]: () => (<Animacao animacao={sending} />),
-    [formState.SUCCESS]: () => (<Animacao animacao={sendingSuccess} />),
-    [formState.FAIL]: () => (<Animacao animacao={sendingFailure} />),
+    [formState.SENDING]: () => (
+      <>
+        <Text
+          variant="title"
+          tag="h1"
+          color="primary.main"
+        >
+          Enviando mensagem...
+        </Text>
+        <Animacao animacao={sending} />
+      </>
+    ),
+    [formState.SUCCESS]: () => (
+      <>
+        <Text
+          variant="title"
+          tag="h1"
+          color="primary.main"
+        >
+          SUCESSO!
+        </Text>
+        <Animacao animacao={sendingSuccess} />
+      </>
+    ),
+    [formState.FAIL]: () => (
+      <>
+        <Text
+          variant="title"
+          tag="h1"
+          color="secondary.dark"
+        >
+          FALHA NO ENVIO!
+        </Text>
+        <Animacao animacao={sendingFailure} />
+      </>
+    ),
   };
 
   return stateView[state]();
@@ -178,6 +215,7 @@ const FormContato = (propsModal) => (
       justifyContent="center"
       alignItems="center"
       flex={1}
+      minHeight="500px"
       padding={{
         xs: '16px',
         md: '32px',

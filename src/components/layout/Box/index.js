@@ -18,6 +18,9 @@ const Box = styled.div`
     ${propToStyle('flexWrap')}
     ${propToStyle('justifyContent')}
     ${propToStyle('maxWidth')}
+    ${propToStyle('maxHeight')}
+    ${propToStyle('minWidth')}
+    ${propToStyle('minHeight')}
     ${propToStyle('padding')}
     ${propToStyle('paddingLeft')}
     ${propToStyle('paddingBottom')}

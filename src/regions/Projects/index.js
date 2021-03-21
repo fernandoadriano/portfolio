@@ -10,7 +10,7 @@ import Text from 'src/foundations/typography/Text';
 const ProjectCard = ({ project }) => (
   <Card size={{ sm: 12, md: 2 }}>
     <Card.Image>
-      <Link href={`projects/${project.slug}`} passHref>
+      <Link href={`/projects/${project.slug}`} passHref>
         <img src={project.screenshot} alt={project.url} />
       </Link>
     </Card.Image>
