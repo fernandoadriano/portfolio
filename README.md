@@ -1,12 +1,40 @@
 # Projeto do BOOTCAMP de JAMStack da Alura
 
 ## Desafio do Módulo 03
+
+A idéia do desafio deste módulo é acrescentar a lista de projetos/protifólio baseado nos repositórios publicos existentes no GitHub.
+> Para ficar aderente ao design do projeto, ao invés de colocar a lista na página Sobre Mim, foi colocar no item Projetos do Menu.
+
+- <ins>Ajustes no componente ```MenuArea```</ins>: foi atualizado para utilizar o componente de link do _NextJS_, porém, estilizado para seguir o _design_ do projeto
+
+- <ins>Módulo de API</ins>: foi criado um módulo no caminho ```src/data``` (utilizado como ```ProjectAPI```) para conter aos acessos à api, inclusive aos dados do arquivo ```db.json``` proposto no desafio.
+
+- <ins>Visualização de Projetos</ins>: adicionado o sistema de ver a tela de projetos, com a respectiva listagem e, quando clicar em em projeto específico, abrir uma página que mostra os detalhes do mesmo.
+> **OBS.:** foi criado um processo de controle nas chamadas do ```getStaticProps``` para evitar ficar chamando a API do GitHub e obter um erro de 403 (rate limit), dificultando assim os testes.
+
+- <ins>SEO</ins>: adicionado o suporte e configuração para melhorar o ranking so site (ver abaixo maiores detalhes).
+
+### Processo de Otimização do SEO
+
+Para o processo de otimização do site para o SEO, foi utilizado o [Google LightHouse](https://developers.google.com/web/tools/lighthouse/) e seu [plugin para o _chrome_](https://chrome.google.com/webstore/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk?hl=pt). Abaixo é possível ver a nota inicial:
+
+| Página | Antes | Depois |
+| :-: | :-: | :-: |
+| ```home``` |![SEO - Primeiro resultado](docs/images/SEO-Home-Before-300.png)||
+| ```Projects``` |![SEO - Primeiro resultado](docs/images/SEO-Project-Before-300.png)| |
+| ```ProjectsDetail``` |![SEO - Primeiro resultado](docs/images/SEO-ProjectDetail-Before-300.png)| |
+
+
+Após o processo de otimização a nota ficou:
+
+![SEO - Resultado após a otimização](docs/images/SEO-After.png)
+
 ## Desafio do Módulo 02
 
 - <ins>Componente _Modal_</ins>: criado um componente genérico de para gerenciar o comportamento de Modal para o projeto.
 
 - <ins>Formulario de contato</ins>: ao clicar no menu Contato é aberto um formulário para preencher os dados de um contato e os mesmos são enviados para a api criada para o projeto (```https://contact-form-api-jamstack.herokuapp.com/message```).
-Para deixar o formulário mais atrativo foram adicionadas animações para o sucesso e a falha na chamada da API.
+Para deixar o formulário mais atrativo foram adicionadas animações (usando ```lottie```) para o sucesso e a falha na chamada da API.
 
 - <ins>CI</ins>: adicionado ao suporte a um _workflow_ de CI/CD com o uso do GutHub Actions e utilizando o [husky](https://github.com/typicode/husky) e o [commitlint](https://github.com/conventional-changelog/commitlint) para garantir que as mensagens de push sigam o padrão do [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/), além de aplicar o ESLINT para garantir que o código esteja aderente ao estilo do AirBnB, impedindo _pushes_ caso não esteja aderente.
 
