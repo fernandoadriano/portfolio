@@ -3,13 +3,9 @@ import { Lottie } from '@crello/react-lottie';
 import PropTypes from 'prop-types';
 import * as yup from 'yup';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
-
 import { Box, Grid } from 'src/components/layout';
 import Form from 'src/components/Form';
 import Text from 'src/foundations/typography/Text';
-import theme from 'src/theme';
 
 import sending from './animations/sending.json';
 import sendingFailure from './animations/sending-fail.json';
