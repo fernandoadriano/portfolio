@@ -20,9 +20,9 @@ Para o processo de otimização do site para o SEO, foi utilizado o [Google Ligh
 
 | Página | Antes | Depois |
 | :-: | :-: | :-: |
-| ```home``` |![SEO - Primeiro resultado](docs/images/SEO-Home-Before-300.png)||
-| ```Projects``` |![SEO - Primeiro resultado](docs/images/SEO-Project-Before-300.png)| |
-| ```ProjectsDetail``` |![SEO - Primeiro resultado](docs/images/SEO-ProjectDetail-Before-300.png)| |
+| ```home``` |![SEO - Primeiro resultado](docs/images/SEO-Home-Before-300.png)|![SEO - Primeiro resultado](docs/images/SEO-Home-After-300.png)|
+| ```Projects``` |![SEO - Primeiro resultado](docs/images/SEO-Project-Before-300.png)|![SEO - Primeiro resultado](docs/images/SEO-Project-After-300.png)|
+| ```ProjectsDetail``` |![SEO - Primeiro resultado](docs/images/SEO-ProjectDetail-Before-300.png)|![SEO - Primeiro resultado](docs/images/SEO-ProjectDetail-After-300.png)|
 
 ## Desafio do Módulo 02
 
