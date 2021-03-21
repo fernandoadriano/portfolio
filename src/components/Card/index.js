@@ -9,12 +9,16 @@ const Card = styled.div`
   flex-direction: column;
   flex-wrap: wrap;
   background: #FFFFFF;
-  border: 1px solid rgba(19, 138, 243, 0.28);
-  box-sizing: border-box;
-  box-shadow: 4px 4px 4px #074479;
-  border-radius: 10px;
-  padding: 6px;
-  margin: 5px;
+  
+  ${({ noBorder }) => (noBorder || css`
+    border: 1px solid rgba(19, 138, 243, 0.28);
+    box-sizing: border-box;
+    box-shadow: 4px 4px 4px #074479;
+    border-radius: 10px;
+    padding: 6px;
+    margin: 5px;
+  `)}
+
   ${({ size }) => {
     if (typeof size === 'number') {
       return css``;
@@ -58,7 +62,9 @@ const Card = styled.div`
 Card.Image = styled.span`
   max-width: 100%;
   width: 100%;
-  border: 1px solid rgba(19, 138, 243, 0.26);
+  
+  ${({ noBorder }) => (noBorder || css`border: 1px solid rgba(19, 138, 243, 0.26);`)}
+
   box-sizing: border-box;
 
   img {

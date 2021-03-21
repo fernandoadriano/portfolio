@@ -1,0 +1,28 @@
+{
+    "projects": [
+        {
+            "id": 347187764,
+            "nome": "alura viagens",
+            "descricao": null,
+            "url": "https://github.com/fernandoadriano/alura-viagens",
+            "slug": "alura-viagens",
+            "screenshot": "/images/alura-viagens.png"
+        },
+        {
+            "id": 339902702,
+            "nome": "fernando adriano machado JAMStackAlura",
+            "descricao": "Projeto do Bootcamp Front-end JAMStack",
+            "url": "https://github.com/fernandoadriano/fernando_adriano_machado_JAMStackAlura",
+            "slug": "fernando_adriano_machado_JAMStackAlura",
+            "screenshot": "/images/fernando_adriano_machado_JAMStackAlura.png"
+        },
+        {
+            "id": 338203602,
+            "nome": "instalura base",
+            "descricao": "Projeto desenvolvido durante Bootcamp de JAMSTACK na Alura",
+            "url": "https://github.com/fernandoadriano/instalura-base",
+            "slug": "instalura-base",
+            "screenshot": "/images/instalura-base.png"
+        }
+    ]
+}

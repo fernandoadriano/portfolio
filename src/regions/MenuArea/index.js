@@ -87,7 +87,7 @@ const MenuArea = ({ onClick, ...props }) => {
       {...props}
     >
       <MenuItem name="about" display={{ xs: 'inline', md: 'block' }} textAlign="end" onClick={handleClick}>Sobre</MenuItem>
-      <MenuItem name="portfolio" display={{ xs: 'inline', md: 'block' }} textAlign="end" onClick={handleClick}>Portifólio</MenuItem>
+      <MenuItem name="projetos" display={{ xs: 'inline', md: 'block' }} textAlign="end" onClick={handleClick}>Projetos</MenuItem>
       <MenuItem name="referencias" display={{ xs: 'inline', md: 'block' }} textAlign="end" onClick={handleClick}>Referência</MenuItem>
       <MenuItem name="contato" display={{ xs: 'inline', md: 'block' }} textAlign="end" onClick={handleClick}>Contato</MenuItem>
     </MenuAreaWrapper>
