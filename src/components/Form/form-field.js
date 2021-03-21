@@ -33,7 +33,7 @@ const FormField = ({
         alwaysShowMask
         mask={mask}
         placeholder={placeholder}
-        rounded={ rounded}
+        rounded={rounded}
         rows={rows}
       />
       {((fieldStatus) => {

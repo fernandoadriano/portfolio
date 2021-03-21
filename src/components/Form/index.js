@@ -7,7 +7,10 @@ import FormContext from './form-context';
 import FormButton from './form-button';
 import FormField from './form-field';
 import FormRow from './form-row';
-
+//
+// Função para inicializar o status do formulário
+// com campos sem erro e nunca visitados (touched)
+//
 const createStoreStatus = (store) => {
   const status = {};
 
@@ -19,17 +22,23 @@ const createStoreStatus = (store) => {
 
   return status;
 };
-
+//
+// Wrapper para formulário. Por enquanto é desnecessário, mas...
+//
 const FormWrapper = styled.form``;
-
+//
+// Componente do formulário
+//
 const Form = ({
   children, initialData, schema, onSubmit, onCancel, ...props
 }) => {
-  const [initialStore] = useState(initialData);
+  const [initialStore] = useState(initialData); // Salva em uma store os campos iniciais
   const [store, setStore] = useState(initialData);
   const [storeStatus, setStoreStatus] = useState(createStoreStatus(initialData));
   const [isInvalid, setIsInvalid] = useState(true);
-
+  //
+  // Handle para processar as alterações nos campos
+  //
   const handleChange = async (event) => {
     const fieldName = event.target.getAttribute('name');
     const newStore = { ...store, [fieldName]: event.target.value };
@@ -53,7 +62,9 @@ const Form = ({
       setIsInvalid(hasError);
     }
   };
-
+  //
+  // Handle para processar os cliques dos botões
+  //
   const handleClick = (type, event) => {
     switch (type.toLowerCase()) {
       case 'submit':
@@ -67,7 +78,8 @@ const Form = ({
     }
   };
 
-  Form.isInvalid = () => isInvalid;
+  /// TODO: rever
+  //   Form.isInvalid = () => isInvalid;
 
   return (
     <FormContext.Provider value={{
@@ -79,39 +91,41 @@ const Form = ({
     }}
     >
       <FormWrapper
-        onSubmit={
-          async (event) => {
-            event.preventDefault();
+        onSubmit={async (event) => {
+          //
+          // Processar o envio de formulários
+          //
+          event.preventDefault();
 
-            const newStoreStatus = { ...storeStatus };
+          const newStoreStatus = { ...storeStatus };
+          Object.keys(newStoreStatus).forEach(
+            (campo) => {
+              newStoreStatus[campo].touched = true;
+              newStoreStatus[campo].error = '';
+            },
+          );
+
+          try {
+            await schema.validate(store, { abortEarly: false });
+            onSubmit(store);
+            setStore(initialStore);
             Object.keys(newStoreStatus).forEach(
               (campo) => {
-                newStoreStatus[campo].touched = true;
+                newStoreStatus[campo].touched = false;
                 newStoreStatus[campo].error = '';
               },
             );
-
-            try {
-              await schema.validate(store, { abortEarly: false });
-              onSubmit(store);
-              setStore(initialStore);
-              Object.keys(newStoreStatus).forEach(
-                (campo) => {
-                  newStoreStatus[campo].touched = false;
-                  newStoreStatus[campo].error = '';
-                },
-              );
-            } catch (err) {
-              err.inner.forEach(
-                (erro) => {
-                  storeStatus[erro.path].error = JSON.stringify(erro.message);
-                },
-              );
-            } finally {
-              setStoreStatus(newStoreStatus);
-            }
+          } catch (err) {
+            err.inner.forEach(
+              (erro) => {
+                storeStatus[erro.path].error = JSON.stringify(erro.message);
+              },
+            );
+          } finally {
+            setStoreStatus(newStoreStatus);
           }
-        }
+        }}
+        // eslint-disable-next-line react/jsx-props-no-spreading
         {...props}
       >
         {children}
