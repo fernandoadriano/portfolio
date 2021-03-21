@@ -42,7 +42,7 @@ const ProjectDetail = (props) => {
         flex="1"
         flexWrap="wrap"
       >
-        <Image src={project ? project.screenshot : '/images/default.jpeg'} width="450px" height="300px" />
+        <Image src={project ? project.screenshot : '/images/default.jpeg'} alt={project ? project.screenshot : '/images/default.jpeg'} width="450px" height="300px" />
         <Box
           paddingLeft="16px"
         >
