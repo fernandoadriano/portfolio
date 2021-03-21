@@ -2,12 +2,7 @@ import styled from 'styled-components';
 import propToStyle from 'src/theme/utils/propToStyle';
 
 const Box = styled.div`
-    ${propToStyle('display')}
-    ${propToStyle('flexDirection')}
-    ${propToStyle('justifyContent')}
     ${propToStyle('alignItems')}
-    ${propToStyle('flex')}
-    ${propToStyle('flexWrap')}
     ${propToStyle('backgroundImage')}
     ${propToStyle('backgroundRepeat')}
     ${propToStyle('backgroundPosition')}
@@ -15,11 +10,20 @@ const Box = styled.div`
     ${propToStyle('border')}
     ${propToStyle('borderRadius')}
     ${propToStyle('boxShadow')}
-    ${propToStyle('padding')}
-    ${propToStyle('maxWidth')}
-    ${propToStyle('width')}
+    ${propToStyle('display')}
+    ${propToStyle('flex')}
     ${propToStyle('flexBasis')}
+    ${propToStyle('flexDirection')}
     ${propToStyle('flexGrow')}
+    ${propToStyle('flexWrap')}
+    ${propToStyle('justifyContent')}
+    ${propToStyle('maxWidth')}
+    ${propToStyle('padding')}
+    ${propToStyle('paddingLeft')}
+    ${propToStyle('paddingBottom')}
+    ${propToStyle('paddingRight')}
+    ${propToStyle('paddingTop')}
+    ${propToStyle('width')}
 `;
 
 export { Box as default };

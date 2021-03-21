@@ -1,17 +1,18 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 import Box from 'src/components/layout/Box';
 import Card from 'src/components/Card';
+import Link from 'src/foundations/Link';
 import Text from 'src/foundations/typography/Text';
 
 const ProjectCard = ({ project }) => (
   <Card size={{ sm: 12, md: 2 }}>
     <Card.Image>
-      <a href={project.slug}>
+      <Link href={`projects/${project.slug}`} passHref>
         <img src={project.screenshot} alt={project.url} />
-      </a>
+      </Link>
     </Card.Image>
     <Card.Title><Text variant="CardTitle">{project.nome}</Text></Card.Title>
     <Card.Description><Text variant="CardDescription">{project.descricao}</Text></Card.Description>
@@ -39,35 +40,12 @@ const ProjectList = ({ projects }) => (
 );
 
 const ProjectsWrapper = styled.div``;
-const listaProjetos = async () => {
-  const resposta = await fetch('https://api.github.com/users/fernandoadriano/repos');
-  const gitProjects = await resposta.json();
-  const projetos = gitProjects.map((projeto) => ({
-    id: projeto.id,
-    nome: projeto.name.replace(/[_-]/gm, ' '),
-    descricao: projeto.description,
-    url: projeto.html_url,
-    slug: `projectdetail/${projeto.name}`,
-    screenshot: 'images/instalura.png',
-  }));
 
-  return projetos;
-};
+const Projects = ({ projects }) => (
+  <ProjectsWrapper>
+    <Text variant="SectionTitle">Portifólio de Projetos</Text>
+    <ProjectList projects={projects} />
+  </ProjectsWrapper>
+);
 
-const Project = () => {
-  const [projetos, setProjetos] = useState([]);
-
-  useEffect(async () => {
-    setProjetos(await listaProjetos());
-  }, []);
-
-  return (
-
-    <ProjectsWrapper>
-      <Text variant="SectionTitle">Portifólio de Projetos</Text>
-      <ProjectList projects={projetos} />
-    </ProjectsWrapper>
-  );
-};
-
-export default Project;
+export default Projects;
