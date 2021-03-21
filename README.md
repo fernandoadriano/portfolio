@@ -1,9 +1,6 @@
 # Projeto do BOOTCAMP de JAMStack da Alura
 
-## Desafio do módulo 01
-
-Criado o projeto base e seu layout seguindo o criado para o projeto.
-
+## Desafio do Módulo 03
 ## Desafio do Módulo 02
 
 - <ins>Componente _Modal_</ins>: criado um componente genérico de para gerenciar o comportamento de Modal para o projeto.
@@ -50,3 +47,7 @@ yarn add --dev @commitlint/{config-conventional,cli}
 ```bash
 yarn husky add .husky/commit-msg "yarn commitlint --edit $1"
 ```
+
+## Desafio do módulo 01
+
+Criado o projeto base e seu layout seguindo o criado para o projeto.
