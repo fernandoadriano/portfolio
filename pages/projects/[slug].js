@@ -32,14 +32,17 @@ const ProjectDetail = (props) => {
   }, []);
 
   return (
-    <MainScreen>
+    <MainScreen
+      headTitle={project.nome.replace(/[_-]/gm, '')}
+      description={project.descricao}
+    >
       <Box
         display="flex"
         flexDirection="row"
         flex="1"
         flexWrap="wrap"
       >
-        <Image src={project ? project.screenshot : '/images/default.jpeg'} width="450px" height="300px" />
+        <Image src={project ? project.screenshot : '/images/default.jpeg'} alt={project ? project.screenshot : '/images/default.jpeg'} width="450px" height="300px" />
         <Box
           paddingLeft="16px"
         >

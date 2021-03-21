@@ -1,83 +1,41 @@
-# Example app with styled-components
+# Projeto do BOOTCAMP de JAMStack da Alura
 
-This example features how you use a different styling solution than [styled-jsx](https://github.com/zeit/styled-jsx) that also supports universal styles. That means we can serve the required styles for the first render within the HTML and then load the rest in the client. In this case we are using [styled-components](https://github.com/styled-components/styled-components).
+## Desafio do Módulo 03
 
-For this purpose we are extending the `<Document />` and injecting the server side rendered styles into the `<head>`, and also adding the `babel-plugin-styled-components` (which is required for server side rendering). Additionally we set up a global [theme](https://www.styled-components.com/docs/advanced#theming) for styled-components using NextJS custom [`<App>`](https://nextjs.org/docs/advanced-features/custom-app) component.
+A idéia do desafio deste módulo é acrescentar a lista de projetos/protifólio baseado nos repositórios publicos existentes no GitHub.
+> Para ficar aderente ao design do projeto, ao invés de colocar a lista na página Sobre Mim, foi colocar no item Projetos do Menu.
 
-## Deploy your own
+- <ins>Ajustes no componente ```MenuArea```</ins>: foi atualizado para utilizar o componente de link do _NextJS_, porém, estilizado para seguir o _design_ do projeto
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+- <ins>Módulo de API</ins>: foi criado um módulo no caminho ```src/data``` (utilizado como ```ProjectAPI```) para conter aos acessos à api, inclusive aos dados do arquivo ```db.json``` proposto no desafio.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-styled-components&project-name=with-styled-components&repository-name=with-styled-components)
+- <ins>Visualização de Projetos</ins>: adicionado o sistema de ver a tela de projetos, com a respectiva listagem e, quando clicar em em projeto específico, abrir uma página que mostra os detalhes do mesmo.
+> **OBS.:** foi criado um processo de controle nas chamadas do ```getStaticProps``` para evitar ficar chamando a API do GitHub e obter um erro de 403 (rate limit), dificultando assim os testes.
 
-## How to use
+- <ins>SEO</ins>: adicionado o suporte e configuração para melhorar o ranking so site (ver abaixo maiores detalhes).
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+### Processo de Otimização do SEO
 
-```bash
-npx create-next-app --example with-styled-components with-styled-components-app
-# or
-yarn create next-app --example with-styled-components with-styled-components-app
-```
+Para o processo de otimização do site para o SEO, foi utilizado o [Google LightHouse](https://developers.google.com/web/tools/lighthouse/) e seu [plugin para o _chrome_](https://chrome.google.com/webstore/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk?hl=pt). Abaixo é possível um comparativo do antes e o depois.
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+| Página | Antes | Depois |
+| :-: | :-: | :-: |
+| ```home``` |![SEO - Primeiro resultado](docs/images/SEO-Home-Before-300.png)||
+| ```Projects``` |![SEO - Primeiro resultado](docs/images/SEO-Project-Before-300.png)| |
+| ```ProjectsDetail``` |![SEO - Primeiro resultado](docs/images/SEO-ProjectDetail-Before-300.png)| |
 
-### Try it on CodeSandbox
+## Desafio do Módulo 02
 
-[Open this example on CodeSandbox](https://codesandbox.io/s/github/vercel/next.js/tree/canary/examples/with-styled-components)
+- <ins>Componente _Modal_</ins>: criado um componente genérico de para gerenciar o comportamento de Modal para o projeto.
 
-### Notes
+- <ins>Formulario de contato</ins>: ao clicar no menu Contato é aberto um formulário para preencher os dados de um contato e os mesmos são enviados para a api criada para o projeto (```https://contact-form-api-jamstack.herokuapp.com/message```).
+Para deixar o formulário mais atrativo foram adicionadas animações (usando ```lottie```) para o sucesso e a falha na chamada da API.
 
-When wrapping a [Link](https://nextjs.org/docs/api-reference/next/link) from `next/link` within a styled-component, the [as](https://styled-components.com/docs/api#as-polymorphic-prop) prop provided by `styled` will collide with the Link's `as` prop and cause styled-components to throw an `Invalid tag` error. To avoid this, you can either use the recommended [forwardedAs](https://styled-components.com/docs/api#forwardedas-prop) prop from styled-components or use a different named prop to pass to a `styled` Link.
+- <ins>CI</ins>: adicionado ao suporte a um _workflow_ de CI/CD com o uso do GutHub Actions e utilizando o [husky](https://github.com/typicode/husky) e o [commitlint](https://github.com/conventional-changelog/commitlint) para garantir que as mensagens de push sigam o padrão do [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/), além de aplicar o ESLINT para garantir que o código esteja aderente ao estilo do AirBnB, impedindo _pushes_ caso não esteja aderente.
 
-<details>
-<summary>Click to expand workaround example</summary>
-<br />
+> Como ação complementar foi adicionado ao processo de CI a validação de código com o uso da ferramenta [SKEN.AI](https://sken.ai/). Este processo busca identificar falhas de segurança que possam vir a ocorrer no software.
 
-**components/StyledLink.js**
-
-```javascript
-import Link from 'next/link'
-import styled from 'styled-components'
-
-const StyledLink = ({ as, children, className, href }) => (
-  <Link href={href} as={as} passHref>
-    <a className={className}>{children}</a>
-  </Link>
-)
-
-export default styled(StyledLink)`
-  color: #0075e0;
-  text-decoration: none;
-  transition: all 0.2s ease-in-out;
-
-  &:hover {
-    color: #40a9ff;
-  }
-
-  &:focus {
-    color: #40a9ff;
-    outline: none;
-    border: 0;
-  }
-`
-```
-
-**pages/index.js**
-
-```javascript
-import StyledLink from '../components/StyledLink'
-
-export default () => (
-  <StyledLink href="/post/[pid]" forwardedAs="/post/abc">
-    First post
-  </StyledLink>
-)
-```
-
-</details>
-
-## Como instalar e configurar o HUSKY
+### <ins>Como instalar e configurar o HUSKY</ins>
 
 ### Instalação
 
@@ -101,7 +59,7 @@ yarn husky add .husky/pre-push "yarn lint"
 Após este processo será criado dentro do diretório ```.husky``` o arquivo ```pre-push``` com o comando ```yarn lint``` para executar
 o ESLint antes de cada push.
 
-## Instalar e configurar o commitlint
+### <ins>Instalar e configurar o commitlint</ins>
 
 ### Instalar o conventional commit para o desenvolvimento
 ```bash
@@ -112,3 +70,7 @@ yarn add --dev @commitlint/{config-conventional,cli}
 ```bash
 yarn husky add .husky/commit-msg "yarn commitlint --edit $1"
 ```
+
+## Desafio do módulo 01
+
+Criado o projeto base e seu layout seguindo o criado para o projeto.

@@ -9,7 +9,10 @@ import MainScreen from 'src/screens/templates/MainScreen';
 
 export default function ProjectsPage({ projects }) {
   return (
-    <MainScreen>
+    <MainScreen
+      headTitle="Portifólio de Projetos"
+      description="Lista de projetos desenvolvidos por mim"
+    >
       <Projects projects={projects} />
     </MainScreen>
   );

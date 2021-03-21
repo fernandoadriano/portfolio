@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
@@ -10,9 +11,12 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <title>Portifólio - Projeto do Bootcamp JAM Stack Alura</title>
         <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400&display=swap" rel="stylesheet" />
+        {/* <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet" /> */}
+        {/* <style>
+          @import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+        </style> */}
       </Head>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
