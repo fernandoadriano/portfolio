@@ -16,18 +16,13 @@ A idéia do desafio deste módulo é acrescentar a lista de projetos/protifólio
 
 ### Processo de Otimização do SEO
 
-Para o processo de otimização do site para o SEO, foi utilizado o [Google LightHouse](https://developers.google.com/web/tools/lighthouse/) e seu [plugin para o _chrome_](https://chrome.google.com/webstore/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk?hl=pt). Abaixo é possível ver a nota inicial:
+Para o processo de otimização do site para o SEO, foi utilizado o [Google LightHouse](https://developers.google.com/web/tools/lighthouse/) e seu [plugin para o _chrome_](https://chrome.google.com/webstore/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk?hl=pt). Abaixo é possível um comparativo do antes e o depois.
 
 | Página | Antes | Depois |
 | :-: | :-: | :-: |
 | ```home``` |![SEO - Primeiro resultado](docs/images/SEO-Home-Before-300.png)||
 | ```Projects``` |![SEO - Primeiro resultado](docs/images/SEO-Project-Before-300.png)| |
 | ```ProjectsDetail``` |![SEO - Primeiro resultado](docs/images/SEO-ProjectDetail-Before-300.png)| |
-
-
-Após o processo de otimização a nota ficou:
-
-![SEO - Resultado após a otimização](docs/images/SEO-After.png)
 
 ## Desafio do Módulo 02
 

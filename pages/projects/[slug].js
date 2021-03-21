@@ -32,7 +32,10 @@ const ProjectDetail = (props) => {
   }, []);
 
   return (
-    <MainScreen>
+    <MainScreen
+      headTitle={project.nome.replace(/[_-]/gm, '')}
+      description={project.descricao}
+    >
       <Box
         display="flex"
         flexDirection="row"
