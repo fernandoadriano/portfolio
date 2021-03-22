@@ -12,6 +12,8 @@ A idéia do desafio deste módulo é acrescentar a lista de projetos/protifólio
 - <ins>Visualização de Projetos</ins>: adicionado o sistema de ver a tela de projetos, com a respectiva listagem e, quando clicar em em projeto específico, abrir uma página que mostra os detalhes do mesmo.
 > **OBS.:** foi criado um processo de controle nas chamadas do ```getStaticProps``` para evitar ficar chamando a API do GitHub e obter um erro de 403 (rate limit), dificultando assim os testes.
 
+- <ins>Formulário de Contato</ins>: migrado para o componente ```Form``` criado durante o desafio extra do módulo 2. Este componente imita o [Formik] com as tags ```Form, Form.Row, Form.Field``` e ```Form.Button``` abstraindo a mecânica de edição dos campos, validação do formulário (baseado em esquemas do [YUP]) e envio dos dados. Foi utilizado o <ins>**CONTEXT**</ins> do React para sincronizar todos os campos.
+
 - <ins>SEO</ins>: adicionado o suporte e configuração para melhorar o ranking so site (ver abaixo maiores detalhes).
 
 ### Processo de Otimização do SEO
@@ -74,3 +76,6 @@ yarn husky add .husky/commit-msg "yarn commitlint --edit $1"
 ## Desafio do módulo 01
 
 Criado o projeto base e seu layout seguindo o criado para o projeto.
+
+[YUP]: https://github.com/jquense/yup
+[Formik]: https://formik.org/
