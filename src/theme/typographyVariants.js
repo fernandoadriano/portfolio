@@ -1,4 +1,15 @@
 export default {
+  formFieldError: (theme) => ({
+    fontSize: '12px',
+    marginLeft: '8px',
+    color: theme.colors.secondary.main,
+  }),
+  formFieldLabel: (theme) => ({
+    fontSize: '18px',
+    marginBottom: '0px',
+    marginLeft: theme.borderRadius,
+    color: theme.colors.primary.main,
+  }),
   SectionTitle: (theme) => ({
     display: 'block',
     fontFamily: 'Cabin',

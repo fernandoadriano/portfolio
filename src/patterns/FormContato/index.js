@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import { Lottie } from '@crello/react-lottie';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import * as yup from 'yup';
 
 import { Box, Grid } from 'src/components/layout';
-import Button from 'src/components/Button';
+import Form from 'src/components/Form';
 import Text from 'src/foundations/typography/Text';
-import { TextField } from 'src/components/Forms';
 
 import sending from './animations/sending.json';
 import sendingFailure from './animations/sending-fail.json';
@@ -17,7 +15,7 @@ const formState = {
   LOADING: 0,
   EDITING: 1,
   SENDING: 2,
-  SUCESS: 3,
+  SUCCESS: 3,
   FAIL: 4,
 };
 
@@ -29,25 +27,6 @@ const Animacao = ({ animacao }) => (
     config={{ animationData: animacao, loop: true, autoplay: true }}
   />
 );
-
-const formAnimation = [
-  () => (<><Text>Loading...</Text></>), // LOADING
-  (onClose, formCtrl) => (
-    <>
-      <Button name="cmdCancelar" type="submit" color="secondary.dark" size={4} ghost onClick={onClose}>cancelar</Button>
-      <Button name="cmdEnviar" type="submit" color="primary.dark" backgroundColor="primary.light" size={4} disabled={formCtrl.isInvalid}>enviar</Button>
-    </>
-  ), // EDITING
-  () => (
-    <Animacao animacao={sending} />
-  ), // SENDING
-  () => (
-    <Animacao animacao={sendingSuccess} />
-  ), // SUCESS
-  () => (
-    <Animacao animacao={sendingFailure} />
-  ), // FAIL
-];
 
 const timeout = (pausa) => new Promise((resolve) => setTimeout(resolve, pausa));
 
@@ -64,48 +43,16 @@ const ContatoSchema = yup.object().shape({
     .required('Deve informar uma mensagem'),
 });
 
-const Form = styled.form`
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-`;
-
 const FormContent = ({ onClose }) => {
   const [state, setState] = useState(formState.EDITING);
-  const [contato, setContato] = useState({
-    nome: '',
-    email: '',
-    msg: '',
-  });
-
-  // useEffect(() => setTimeout(
-  //   () => setState(formState.EDITING),
-  //   1000,
-  // ), []);
-
-  const [formCtrl, setFormCtrl] = useState({
-    isInvalid: true,
-    nome: {
-      touched: false,
-      error: '',
-    },
-    email: {
-      touched: false,
-      error: '',
-    },
-    msg: {
-      touched: false,
-      error: '',
-    },
-  });
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const handleSubmit = async (contato) => {
     setState(formState.SENDING);
-    await timeout(1000);
 
     try {
-      const retorno = await fetch('https://contact-form-api-jamstack.herokuapp.com/message', {
+      //
+      // Criar requisição
+      //
+      let retorno = fetch('https://contact-form-api-jamstack.herokuapp.com/message', {
         method: 'POST',
         headers: { 'Content-type': 'application/json' },
         body: JSON.stringify({
@@ -114,29 +61,21 @@ const FormContent = ({ onClose }) => {
           message: contato.msg,
         }),
       });
+      //
+      // Aguardar 1 segundo - simular tempo mínimo para chamada
+      //
+      await timeout(1000);
+      //
+      // Obter resultado da requisição
+      //
+      retorno = await retorno;
 
       if (retorno.status === 201) {
         await retorno.json();
 
-        setState(formState.SUCESS);
+        setState(formState.SUCCESS);
 
         await timeout(3000);
-        setContato({ nome: '', email: '', msg: '' });
-        setFormCtrl({
-          isInvalid: true,
-          nome: {
-            touched: false,
-            error: '',
-          },
-          email: {
-            touched: false,
-            error: '',
-          },
-          msg: {
-            touched: false,
-            error: '',
-          },
-        });
         setState(formState.EDITING);
       } else {
         setState(formState.FAIL);
@@ -148,63 +87,106 @@ const FormContent = ({ onClose }) => {
     }
   };
 
-  const handleChange = async (event) => {
-    const name = event.target.getAttribute('name');
-    const newContato = { ...contato, [name]: event.target.value };
-
-    if (state !== formState.EDITING) {
-      setState(formState.EDITING);
-    }
-
-    formCtrl[name].touched = true;
-    formCtrl[name].error = '';
-
-    try {
-      await ContatoSchema.validate(newContato, { abortEarly: false });
-      formCtrl.isInvalid = false;
-    } catch (err) {
-      formCtrl.isInvalid = true;
-
-      err.inner.forEach((erro) => {
-        formCtrl[erro.path].error = erro.message;
-      });
-    } finally {
-      setContato(newContato);
-      setFormCtrl(formCtrl);
-    }
+  const stateView = {
+    [formState.LOADING]: () => (<pre>Loading...</pre>),
+    [formState.EDITING]: () => (
+      <Form
+        initialData={{
+          nome: '',
+          email: '',
+          msg: '',
+        }}
+        schema={ContatoSchema}
+        onCancel={onClose}
+        onSubmit={handleSubmit}
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          flex: '1',
+          width: '100%',
+        }}
+      >
+        <Form.Row>
+          <Text
+            variant="title"
+            tag="h1"
+            color="primary.main"
+          >
+            Deixe a sua mensagem aqui...
+          </Text>
+        </Form.Row>
+        <Form.Row>
+          <Form.Field
+            autoFocus
+            name="nome"
+            label="Nome"
+            placeholder="Nome completo"
+            rounded
+          />
+        </Form.Row>
+        <Form.Row>
+          <Form.Field
+            name="email"
+            label="E-Mail"
+            placeholder="E-Mail de contato"
+            rounded
+          />
+        </Form.Row>
+        <Form.Row>
+          <Form.Field
+            as="textarea"
+            rows={4}
+            name="msg"
+            label="Mensagem"
+            placeholder="Digite sua mensagem"
+            rounded
+          />
+        </Form.Row>
+        <Form.Row center>
+          <Form.Button type="cancel" color="secondary.dark" size={4} ghost>Cancelar</Form.Button>
+          <Form.Button type="submit" color="primary.dark" backgroundColor="primary.light" size={4}>Enviar</Form.Button>
+        </Form.Row>
+      </Form>
+    ),
+    [formState.SENDING]: () => (
+      <>
+        <Text
+          variant="title"
+          tag="h1"
+          color="primary.main"
+        >
+          Enviando mensagem...
+        </Text>
+        <Animacao animacao={sending} />
+      </>
+    ),
+    [formState.SUCCESS]: () => (
+      <>
+        <Text
+          variant="title"
+          tag="h1"
+          color="primary.main"
+        >
+          SUCESSO!
+        </Text>
+        <Animacao animacao={sendingSuccess} />
+      </>
+    ),
+    [formState.FAIL]: () => (
+      <>
+        <Text
+          variant="title"
+          tag="h1"
+          color="secondary.dark"
+        >
+          FALHA NO ENVIO!
+        </Text>
+        <Animacao animacao={sendingFailure} />
+      </>
+    ),
   };
 
-  return (
-    <Form onSubmit={handleSubmit}>
-      {formCtrl.nome.touched && formCtrl.nome.error && (
-        <Text color="secondary.main" variant="smallestException">
-          {formCtrl.nome.error}
-        </Text>
-      )}
-      <TextField color="primary.dark" value={contato.nome} name="nome" placeholder="Nome" placeholderColor="primary.light" rounded onChange={(event) => handleChange(event)} />
-
-      {formCtrl.email.touched && formCtrl.email.error && (
-      <Text color="secondary.main" variant="smallestException">
-        {formCtrl.email.error}
-      </Text>
-      )}
-      <TextField color="primary.dark" value={contato.email} name="email" placeholder="E-mail" placeholderColor="primary.light" rounded onChange={(event) => handleChange(event)} />
-
-      {formCtrl.msg.touched && formCtrl.msg.error && (
-      <Text color="secondary.main" variant="smallestException">
-        {formCtrl.msg.error}
-      </Text>
-      )}
-      <TextField as="textarea" rows={4} color="primary.dark" value={contato.msg} name="msg" placeholder="Mensagem" placeholderColor="primary.light" rounded onChange={(event) => handleChange(event)} />
-      <Box
-        display="flex"
-        flexDirection="row"
-        justifyContent="space-evenly"
-      >
-        {formAnimation[state](onClose, formCtrl)}
-      </Box>
-    </Form>
-  );
+  return stateView[state]();
 };
 
 FormContent.propTypes = {
@@ -215,7 +197,9 @@ const FormContato = (propsModal) => (
   <Grid.Container
     display="flex"
     flex={1}
-    width="40%"
+    // width="40%"
+    marginLeft={{ sm: '16px', md: '350px' }}
+    marginRight={{ sm: '16px', md: '350px' }}
     justifyContent="center"
     alignItems="center"
   >
@@ -227,20 +211,15 @@ const FormContato = (propsModal) => (
       justifyContent="center"
       alignItems="center"
       flex={1}
+      minHeight="500px"
       padding={{
         xs: '16px',
+        md: '32px',
       }}
       backgroundColor="white"
        // eslint-disable-next-line react/jsx-props-no-spreading
       {...propsModal}
     >
-      <Text
-        variant="title"
-        tag="h1"
-        color="primary.main"
-      >
-        Deixe a sua mensagem aqui...
-      </Text>
       <FormContent
         onClose={propsModal.onClose}
       />
