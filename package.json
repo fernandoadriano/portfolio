@@ -9,7 +9,9 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:integration:open": "cypress open",
-    "test:integration": "cypress run --headless"    
+    "test:integration": "cypress run --headless",
+    "test:integration:build": "start-server-and-test build/start http-get://localhost:3000 test:integration",
+    "build/start": "yarn build && yarn start"
   },
   "dependencies": {
     "@crello/react-lottie": "^0.0.11",
@@ -36,6 +38,7 @@
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.6",
     "@testing-library/react-hooks": "^5.1.1",
+    "@testing-library/user-event": "^13.1.1",
     "@types/jest": "^26.0.22",
     "babel-plugin-styled-components": "^1.8.0",
     "cypress": "^6.8.0",
