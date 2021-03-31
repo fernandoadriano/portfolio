@@ -1,5 +1,4 @@
 import React from 'react';
-import user from '@testing-library/user-event';
 import { render, screen } from 'src/infra/test/testUtils';
 
 import TextField from './index';
