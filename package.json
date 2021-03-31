@@ -7,7 +7,7 @@
     "start": "next start",
     "lint": "./node_modules/.bin/eslint --ignore-path .gitignore",
     "test": "jest",
-    "test:watch": "jest --watch",
+    "test:watch": "jest --watch --verbose",
     "test:integration:open": "cypress open",
     "test:integration": "cypress run --headless",
     "test:integration:build": "start-server-and-test build/start http-get://localhost:3000 test:integration",
