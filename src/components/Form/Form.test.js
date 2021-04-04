@@ -1,7 +1,7 @@
 import React from 'react';
 import user from '@testing-library/user-event';
 import {
-  render, screen, waitFor, act,
+  render, screen, waitFor,
 } from 'src/infra/test/testUtils';
 import * as yup from 'yup';
 import Form from './index';

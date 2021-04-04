@@ -43,7 +43,7 @@ Input.propTypes = {
   as: PropTypes.string,
   autoFocus: PropTypes.bool,
   variant: PropTypes.string,
-}
+};
 export default function TextField({
   placeholder,
   name,
