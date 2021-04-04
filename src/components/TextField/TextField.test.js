@@ -10,6 +10,7 @@ describe('<Input />', () => {
       render(
         <TextField
           name="nome"
+          autoFocus
           placeholder="nome"
           onChange={() => {}}
           value={valorInicial}
@@ -20,8 +21,8 @@ describe('<Input />', () => {
 
       const input = screen.getByPlaceholderText('nome');
 
-      expect(input).toHaveProperty('value', valorInicial);
-      expect(input).toHaveProperty('name', 'nome');
+      expect(input).toHaveAttribute('value', valorInicial);
+      expect(input).toHaveAttribute('name', 'nome');
       expect(input).toMatchSnapshot();
     });
   });
