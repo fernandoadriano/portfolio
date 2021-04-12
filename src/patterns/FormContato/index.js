@@ -194,7 +194,7 @@ FormContent.propTypes = {
   onClose: PropTypes.func.isRequired,
 };
 
-const FormContato = (propsModal) => (
+const FormContato = ({ onClose, ...propsModal }) => (
   <Grid.Container
     display="flex"
     flex={1}
@@ -222,10 +222,14 @@ const FormContato = (propsModal) => (
       {...propsModal}
     >
       <FormContent
-        onClose={propsModal.onClose}
+        onClose={onClose}
       />
     </Box>
   </Grid.Container>
 );
+
+FormContato.propTypes = {
+  onClose: PropTypes.func.isRequired,
+};
 
 export default FormContato;
