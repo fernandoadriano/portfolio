@@ -9,7 +9,7 @@ import { getThemeColor } from 'src/theme';
 //   margin-bottom: 17px;
 // `;
 
-const InputWrapper = styled(Text)`
+const InputWrapper = styled.input`
   width: 100%;
   border: 2px solid ${({ theme }) => theme.colors.primary.main};
   padding: 8px 14px;
@@ -57,21 +57,19 @@ export default function TextField({
   rows,
 }) {
   return (
-    <InputWrapper>
-      <Input
-        as={as}
-        autoFocus={autoFocus}
-        type="text"
-        placeholder={placeholder}
-        name={name}
-        onChange={onChange}
-        value={value}
-        rounded={rounded}
-        color={color}
-        placeholderColor={placeholderColor}
-        rows={rows}
-      />
-    </InputWrapper>
+    <Input
+      as={as}
+      autoFocus={autoFocus}
+      type="text"
+      placeholder={placeholder}
+      name={name}
+      onChange={onChange}
+      value={value}
+      rounded={rounded}
+      color={color}
+      placeholderColor={placeholderColor}
+      rows={rows}
+    />
   );
 }
 
