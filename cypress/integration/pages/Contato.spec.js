@@ -1,9 +1,9 @@
-describe('/', () => {
+describe('/home/contato', () => {
   beforeEach(() => {
     cy.visit('/');
     cy.get('a').contains(/contato/i).click();
   });
-  describe('Formulário de contato', () => {
+  describe(' de contato', () => {
     describe('Renderização', () => {
       it('Possui o campo nome', () => {
         cy.get('#formContato input[name="nome"]').should('have.length', 1);
