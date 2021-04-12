@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Input /> Renderização Campo padrão 1`] = `
+.c0 {
+  width: 100%;
+  border: 2px solid #138AF3;
+  padding: 8px 14px;
+  outline: 0;
+  border-radius: 0px;
+}
+
+.c0::-webkit-input-placeholder {
+  opacity: 1;
+}
+
+.c0::-moz-placeholder {
+  opacity: 1;
+}
+
+.c0:-ms-input-placeholder {
+  opacity: 1;
+}
+
+.c0::placeholder {
+  opacity: 1;
+}
+
+<input
+  class="c0"
+  color="red"
+  name="nome"
+  placeholder="nome"
+  rows="1"
+  type="text"
+  value="valor inicial"
+/>
+`;

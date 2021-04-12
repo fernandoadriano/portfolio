@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 
-import Input from 'src/components/Input';
+import TextField from 'src/components/TextField';
 import Text from 'src/foundations/typography/Text';
 import FormContext from './form-context';
 
@@ -23,7 +23,7 @@ const FormField = ({
       }}
     >
       <Text variant="formFieldLabel">{label}</Text>
-      <Input
+      <TextField
         type={type}
         as={as}
         name={name}

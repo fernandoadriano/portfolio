@@ -43,7 +43,7 @@ const Form = ({
     const fieldName = event.target.getAttribute('name');
     const newStore = { ...store, [fieldName]: event.target.value };
     const newStoreStatus = { ...storeStatus };
-    let hasError = true;
+    const errorList = [];
 
     setStore(newStore);
 
@@ -54,24 +54,82 @@ const Form = ({
 
     try {
       await schema.validate(newStore, { abortEarly: false });
-      hasError = false;
     } catch (err) {
-      err.inner.forEach((erro) => { storeStatus[erro.path].error = JSON.stringify(erro.message); });
+      err.inner.forEach((erro) => {
+        errorList.push(erro);
+        storeStatus[erro.path].error = erro.message;
+      });
     } finally {
       setStoreStatus(newStoreStatus);
-      setIsInvalid(hasError);
+      setIsInvalid(errorList.length > 0);
     }
+  };
+  //
+  // Handle do submit
+  //
+  const handleSubmit = async (event) => {
+    //
+    // Processar o envio de formulários
+    //
+    event.preventDefault();
+
+    const newStoreStatus = { ...storeStatus };
+    Object.keys(newStoreStatus).forEach(
+      (campo) => {
+        newStoreStatus[campo].touched = true;
+        newStoreStatus[campo].error = '';
+      },
+    );
+
+    try {
+      await schema.validate(store, { abortEarly: false });
+      onSubmit(store);
+      setStore(initialStore);
+      Object.keys(newStoreStatus).forEach(
+        (campo) => {
+          newStoreStatus[campo].touched = false;
+          newStoreStatus[campo].error = '';
+        },
+      );
+      setIsInvalid(true);
+    } catch (err) {
+      err.inner.forEach(
+        (erro) => {
+          storeStatus[erro.path].error = JSON.stringify(erro.message);
+        },
+      );
+    } finally {
+      setStoreStatus(newStoreStatus);
+    }
+  };
+  //
+  // Handle Cancel
+  //
+  const handleCancel = (event) => {
+    const newStoreStatus = { ...storeStatus };
+
+    event.preventDefault();
+
+    setStore(initialStore);
+    Object.keys(newStoreStatus).forEach(
+      (campo) => {
+        newStoreStatus[campo].touched = false;
+        newStoreStatus[campo].error = '';
+      },
+    );
+    setIsInvalid(true);
+    onCancel();
   };
   //
   // Handle para processar os cliques dos botões
   //
-  const handleClick = (type, event) => {
+  const handleClick = async (type, event) => {
     switch (type.toLowerCase()) {
       case 'submit':
-        onSubmit(store);
+        handleSubmit(event);
         break;
       case 'cancel':
-        onCancel();
+        handleCancel(event);
         break;
       default:
         event.preventDefault();
@@ -91,40 +149,6 @@ const Form = ({
     }}
     >
       <FormWrapper
-        onSubmit={async (event) => {
-          //
-          // Processar o envio de formulários
-          //
-          event.preventDefault();
-
-          const newStoreStatus = { ...storeStatus };
-          Object.keys(newStoreStatus).forEach(
-            (campo) => {
-              newStoreStatus[campo].touched = true;
-              newStoreStatus[campo].error = '';
-            },
-          );
-
-          try {
-            await schema.validate(store, { abortEarly: false });
-            onSubmit(store);
-            setStore(initialStore);
-            Object.keys(newStoreStatus).forEach(
-              (campo) => {
-                newStoreStatus[campo].touched = false;
-                newStoreStatus[campo].error = '';
-              },
-            );
-          } catch (err) {
-            err.inner.forEach(
-              (erro) => {
-                storeStatus[erro.path].error = JSON.stringify(erro.message);
-              },
-            );
-          } finally {
-            setStoreStatus(newStoreStatus);
-          }
-        }}
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...props}
       >
@@ -138,8 +162,8 @@ Form.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   initialData: PropTypes.object.isRequired,
   children: PropTypes.node.isRequired,
-  onSubmit: PropTypes.func.isRequired,
-  onCancel: PropTypes.func.isRequired,
+  onSubmit: PropTypes.oneOfType([PropTypes.func, PropTypes.object]).isRequired,
+  onCancel: PropTypes.oneOfType([PropTypes.func, PropTypes.object]).isRequired,
   // eslint-disable-next-line react/forbid-prop-types
   schema: PropTypes.object.isRequired,
 };

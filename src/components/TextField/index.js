@@ -1,14 +1,14 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import Text from 'src/foundations/typography/Text';
 import { getThemeColor } from 'src/theme';
 
-const InputWrapper = styled.div`
-  margin-bottom: 17px;
-`;
+// const InputWrapper = styled.div`
+//   margin-bottom: 17px;
+// `;
 
-const Input = styled(Text)`
+const InputWrapper = styled.input`
   width: 100%;
   border: 2px solid ${({ theme }) => theme.colors.primary.main};
   padding: 8px 14px;
@@ -21,11 +21,28 @@ const Input = styled(Text)`
   }  
 `;
 
+const Input = ({
+  as, variant, autoFocus, ...props
+}) => (
+  <InputWrapper
+    as={as}
+    variant={variant}
+    autoFocus={autoFocus}
+    {...props}
+  />
+);
+
 Input.defaultProps = {
   as: 'input',
   variant: 'paragraph1',
+  autoFocus: false,
 };
 
+Input.propTypes = {
+  as: PropTypes.string,
+  autoFocus: PropTypes.bool,
+  variant: PropTypes.string,
+};
 export default function TextField({
   placeholder,
   name,
@@ -35,27 +52,28 @@ export default function TextField({
   color,
   placeholderColor,
   as,
+  autoFocus,
   rows,
 }) {
   return (
-    <InputWrapper>
-      <Input
-        as={as}
-        type="text"
-        placeholder={placeholder}
-        name={name}
-        onChange={onChange}
-        value={value}
-        rounded={rounded}
-        color={color}
-        placeholderColor={placeholderColor}
-        rows={rows}
-      />
-    </InputWrapper>
+    <Input
+      as={as}
+      autoFocus={autoFocus}
+      type="text"
+      placeholder={placeholder}
+      name={name}
+      onChange={onChange}
+      value={value}
+      rounded={rounded}
+      color={color}
+      placeholderColor={placeholderColor}
+      rows={rows}
+    />
   );
 }
 
 TextField.defaultProps = {
+  autoFocus: false,
   rounded: false,
   color: null,
   placeholderColor: null,
@@ -69,6 +87,7 @@ TextField.propTypes = {
   onChange: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
   rounded: PropTypes.bool,
+  autoFocus: PropTypes.bool,
   color: PropTypes.string,
   placeholderColor: PropTypes.string,
   as: PropTypes.string,

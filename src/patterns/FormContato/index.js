@@ -91,6 +91,7 @@ const FormContent = ({ onClose }) => {
     [formState.LOADING]: () => (<pre>Loading...</pre>),
     [formState.EDITING]: () => (
       <Form
+        id="formContato"
         initialData={{
           nome: '',
           email: '',
