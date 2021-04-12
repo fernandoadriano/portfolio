@@ -23,6 +23,22 @@
             "url": "https://github.com/fernandoadriano/instalura-base",
             "slug": "instalura-base",
             "screenshot": "/images/instalura-base.png"
+        },
+        {
+            "id": 0,
+            "nome": "monorepo02",
+            "descricao": "Teste de Monorepo",
+            "url": "https://github.com/fernandoadriano/monorepo02",
+            "slug": "monorepo02",
+            "screenshot": "/images/instalura-base.png"
+        },
+        {
+            "id": 0,
+            "nome": "infocao",
+            "descricao": "Desafio 2 do módulo 3",
+            "url": "https://github.com/fernandoadriano/infocao",
+            "slug": "infocao",
+            "screenshot": "/images/instalura-base.png"
         }
     ]
 }
