@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+import React from 'react';
 import Image from 'next/image';
 import PropTypes from 'prop-types';
 
