@@ -21,6 +21,8 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@fortawesome/react-fontawesome": "^0.1.14",
     "framer-motion": "^4.1.3",
+    "graphql": "^15.5.0",
+    "graphql-request": "^3.4.0",
     "lodash": "^4.17.21",
     "next": "latest",
     "prop-types": "^15.7.2",
