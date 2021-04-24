@@ -1,9 +1,7 @@
 import { CMSGraphQLClient, gql } from 'src/infra/cms/DATOClient';
-// import import { projects } from './db.json';
 
 export default {
   projectList: async () => {
-    // const resposta = await fetch('https://api.github.com/users/fernandoadriano/repos');
     const client = CMSGraphQLClient();
     const query = gql`query 
     {
@@ -21,8 +19,6 @@ export default {
     }
     `;
     const resposta = await client.query({ query });
-    console.log(JSON.stringify(resposta, null, 4));
-
     const projetos = resposta.data.allProjetos.map((projeto) => ({
       id: projeto.id,
       nome: projeto.nome,
@@ -36,10 +32,27 @@ export default {
     return projetos;
   },
   projectDetail: async (slug = '') => {
-    let projeto = projects.filter((project) => project.slug.toLowerCase() === slug.toLowerCase());
+    const client = CMSGraphQLClient();
+    const query = gql`query 
+    {
+      allProjetos(filter: { slug: { eq: "${slug}"}}) {
+         id
+        nome
+        slug
+        descricao(markdown: true)
+        url
+        repositorio
+        screenshot {
+          url
+        }
+      }
+    }
+    `;
+    const resposta = await client.query({ query });
+    const projeto = resposta.data.allProjetos;
 
-    if (!projeto) {
-      projeto = [{
+    if (!projeto || projeto.length === 0) {
+      return [{
         id: '',
         nome: '',
         descricao: '',
