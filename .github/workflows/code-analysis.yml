@@ -79,7 +79,7 @@ jobs:
 
       - name: Run Unit Tests
         env:
-          CMS_TOKEN: ${{ secrets.DATDO_CMS }}      
+          CMS_TOKEN: ${{ secrets.DATO_CMS }}      
         run: yarn test
 
   integration_tests:
@@ -106,5 +106,5 @@ jobs:
 
       - name: Run Integration Tests
         env:
-          CMS_TOKEN: ${{ secrets.DATDO_CMS }}      
-        run: echo 'HEX:' ${{ secrets.DATDO_CMS }} && yarn test:integration:build 
+          CMS_TOKEN: ${{ secrets.DATO_CMS }}      
+        run: echo 'HEX:' ${{ secrets.DATO_CMS }} && yarn test:integration:build 
