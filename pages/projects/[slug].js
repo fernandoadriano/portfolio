@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+import React from 'react';
 import Image from 'next/image';
 import PropTypes from 'prop-types';
 
@@ -8,66 +7,55 @@ import MainScreen from 'src/screens/templates/MainScreen';
 import Text from 'src/foundations/typography/Text';
 import ProjectAPI from 'src/data';
 
-const ProjectDetail = (props) => {
-  const [project, setProject] = useState({
+const ProjectDetail = ({ project }) => (
+  <MainScreen
+    headTitle={project.nome}
+    description={project.descricao}
+  >
+    <Box
+      display="flex"
+      flexDirection="row"
+      flex="1"
+      flexWrap="wrap"
+    >
+      <Image src={project && project.screenshot.length !== 0 ? project.screenshot : '/images/default.jpeg'} alt={project ? project.screenshot : '/images/default.jpeg'} width="450px" height="300px" />
+      <Box
+        paddingLeft="16px"
+      >
+        <Text color="primary.dark" variant="SectionTitle">
+          {project && project.nome}
+        </Text>
+        <Box
+          color="primary.dark"
+          variant="pargraph1"
+          dangerouslySetInnerHTML={{ __html: project && project.descricao }}
+        />
+      </Box>
+    </Box>
+  </MainScreen>
+);
+
+ProjectDetail.defaultProps = {
+  project: {
     id: '',
     nome: '',
     descricao: '',
     url: '',
+    repositorio: '',
     slug: '',
-    screenshot: 'images/instalura.png',
-  });
-  const router = useRouter();
-  let slug;
-
-  // eslint-disable-next-line react/destructuring-assignment
-  if (props.slug) {
-    slug = props.slug;
-  } else {
-    slug = router.query.slug;
-  }
-
-  useEffect(async () => {
-    setProject(await ProjectAPI.projectDetail(slug));
-  }, []);
-
-  return (
-    <MainScreen
-      headTitle={project.nome.replace(/[_-]/gm, '')}
-      description={project.descricao}
-    >
-      <Box
-        display="flex"
-        flexDirection="row"
-        flex="1"
-        flexWrap="wrap"
-      >
-        <Image src={project ? project.screenshot : '/images/default.jpeg'} alt={project ? project.screenshot : '/images/default.jpeg'} width="450px" height="300px" />
-        <Box
-          paddingLeft="16px"
-        >
-          <Text color="primary.dark" variant="SectionTitle">
-            {project && project.nome}
-          </Text>
-          <Text color="primary.dark" variant="pargraph1">
-            {project && project.descricao}
-          </Text>
-        </Box>
-      </Box>
-    </MainScreen>
-  );
-};
-
-ProjectDetail.defaultProps = {
-  slug: undefined,
+    screenshot: '',
+  },
 };
 
 ProjectDetail.propTypes = {
-  slug: PropTypes.string,
+  // eslint-disable-next-line react/forbid-prop-types
+  project: PropTypes.object,
 };
 
 export async function getStaticProps({ params }) {
   const project = await ProjectAPI.projectDetail(params.slug);
+
+  if (project) project.screenshot = project.screenshot.url;
 
   return {
     props: {

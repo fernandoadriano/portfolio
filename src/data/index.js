@@ -1,30 +1,58 @@
-import { projects } from './db.json';
+import { CMSGraphQLClient, gql } from 'src/infra/cms/DATOClient';
 
 export default {
   projectList: async () => {
-    const resposta = await fetch('https://api.github.com/users/fernandoadriano/repos');
-
-    if (resposta.status !== 200) {
-      throw new Error(`Erro ao acessar github: ${resposta.status} - ${resposta.statusText}`);
+    const client = CMSGraphQLClient();
+    const query = gql`query 
+    {
+      allProjetos {
+         id
+        nome
+        slug
+        descricao(markdown: false)
+        url
+        repositorio
+        screenshot {
+          url
+        }
+      }
     }
-
-    const gitProjects = await resposta.json();
-    const projetos = gitProjects.map((projeto) => ({
+    `;
+    const resposta = await client.query({ query });
+    const projetos = resposta.data.allProjetos.map((projeto) => ({
       id: projeto.id,
-      nome: projeto.name.replace(/[_-]/gm, ' '),
-      descricao: projeto.description,
-      url: projeto.html_url,
-      slug: projeto.name,
-      screenshot: `/images/${projeto.name}.png`,
+      nome: projeto.nome,
+      descricao: projeto.descricao,
+      url: projeto.url,
+      repositorio: projeto.repositorio,
+      slug: projeto.slug,
+      screenshot: projeto.screenshot.url,
     }));
 
     return projetos;
   },
   projectDetail: async (slug = '') => {
-    let projeto = projects.filter((project) => project.slug.toLowerCase() === slug.toLowerCase());
+    const client = CMSGraphQLClient();
+    const query = gql`query 
+    {
+      allProjetos(filter: { slug: { eq: "${slug}"}}) {
+         id
+        nome
+        slug
+        descricao(markdown: true)
+        url
+        repositorio
+        screenshot {
+          url
+        }
+      }
+    }
+    `;
+    const resposta = await client.query({ query });
+    const projeto = resposta.data.allProjetos;
 
-    if (!projeto) {
-      projeto = [{
+    if (!projeto || projeto.length === 0) {
+      return [{
         id: '',
         nome: '',
         descricao: '',

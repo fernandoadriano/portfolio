@@ -1,6 +1,4 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import fs from 'fs';
 import PropTypes from 'prop-types';
 import ProjectAPI from 'src/data';
 
@@ -23,19 +21,9 @@ ProjectsPage.propTypes = {
 };
 
 export async function getStaticProps() {
-  const dbFile = './src/data/db.json';
-  let projects;
-  //
-  // Persistência em disco para não tomar erro de excesso de requisição ao GIT
-  //
-  if (fs.existsSync(dbFile)) {
-    projects = JSON.parse(fs.readFileSync(dbFile));
-  } else {
-    projects = {
-      projects: await ProjectAPI.projectList(),
-    };
-    fs.writeFileSync(dbFile, JSON.stringify(projects, null, 4));
-  }
+  const projects = {
+    projects: await ProjectAPI.projectList(),
+  };
 
   return {
     props: {
