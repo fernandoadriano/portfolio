@@ -78,6 +78,8 @@ jobs:
         run: yarn --prefer-offline
 
       - name: Run Unit Tests
+        env:
+          CMS_TOKEN: ${{ secrets.DATDO_CMS }}      
         run: yarn test
 
   integration_tests:
@@ -103,4 +105,6 @@ jobs:
         run: yarn --prefer-offline
 
       - name: Run Integration Tests
+        env:
+          CMS_TOKEN: ${{ secrets.DATDO_CMS }}      
         run: yarn test:integration:build 
