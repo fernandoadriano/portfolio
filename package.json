@@ -43,7 +43,7 @@
     "@testing-library/user-event": "^13.1.1",
     "@types/jest": "^26.0.22",
     "babel-plugin-styled-components": "^1.8.0",
-    "cypress": "^6.8.0",
+    "cypress": "^8.1.0",
     "eslint": "^7.24.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-import-resolver-custom-alias": "^1.2.0",
